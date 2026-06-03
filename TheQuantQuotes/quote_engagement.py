@@ -24,7 +24,7 @@ def load_engagement() -> Dict[str, Dict[str, int]]:
     Returns:
         Dictionary with quote as key and {'likes': count, 'shares': count} as value
     """
-    ensure_data_dir()
+
 
     if ENGAGEMENT_FILE.exists():
         try:
