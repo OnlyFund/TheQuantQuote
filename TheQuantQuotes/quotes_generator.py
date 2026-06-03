@@ -22,6 +22,7 @@ TRADING_QUOTES = [
     "Stoch-Local Vol is not a model choice, it's a commitment issue",
     "Every time that an axe gets filled, a sales trader gets his wings",
     "USDJPY drops 1% - maybe something, probably nothing",
+    'Zero - the only true answer to the question "How low vols can go"',
 
 
     # Vega quotes
