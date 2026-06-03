@@ -21,6 +21,7 @@ TRADING_QUOTES = [
     "A 1Δ option on the day of expiry : the stuff traders' nightmares are made of",
     "Stoch-Local Vol is not a model choice, it's a commitment issue",
     "Every time that an axe gets filled, a sales trader gets his wings",
+    "USDJPY drops 1% - maybe something, probably nothing",
 
 
     # Vega quotes
