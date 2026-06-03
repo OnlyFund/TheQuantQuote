@@ -5,16 +5,16 @@ Quote engagement tracking - manages likes and shares for quotes.
 import json
 import os
 from typing import Dict, Tuple
-from pathlib import Path
 
 # Data storage path
-DATA_DIR = Path("data")
-ENGAGEMENT_FILE = DATA_DIR / "quote_engagement.json"
+from pathlib import Path
 
+# Directory containing this Python file
+BASE_DIR = Path(__file__).resolve().parent
 
-def ensure_data_dir():
-    """Ensure data directory exists."""
-    DATA_DIR.mkdir(exist_ok=True)
+# JSON file in the same directory as quote_engagement.py
+ENGAGEMENT_FILE = BASE_DIR / "quote_engagement.json"
+
 
 
 def load_engagement() -> Dict[str, Dict[str, int]]:
