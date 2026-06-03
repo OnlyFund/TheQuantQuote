@@ -16,6 +16,7 @@ TRADING_QUOTES = [
     "Gamma: the silent portfolio killer",
     "In gamma we trust, in delta we adjust",
     "Gamma scalping: because sleep is overrated",
+    "Vol Risk Premium: good luck capturing that...",
     "Long gamma, short sanity",
 
     # Vega quotes
