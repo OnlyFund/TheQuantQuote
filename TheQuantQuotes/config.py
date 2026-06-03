@@ -27,26 +27,38 @@ BLOOMBERG_CSS = """
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* Main container */
+    /* Main container - TIGHTER LAYOUT */
     .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        max-width: 1200px;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
         margin: 0 auto;
     }
 
-    /* Bloomberg header bar */
+    /* Reduce gap between elements */
+    .element-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .stVerticalBlockBorderWrapper {
+        gap: 0.25rem !important;
+    }
+
+    /* Bloomberg header bar - COMPACT */
     .bloomberg-header {
         background: linear-gradient(90deg, #FF6B00 0%, #FF8C00 100%);
-        padding: 2rem 2.5rem;
-        margin: -1rem -1rem 3rem -1rem;
-        border-bottom: 4px solid #FFD700;
-        box-shadow: 0 6px 12px rgba(255, 107, 0, 0.4);
+        padding: 1rem 1.5rem;
+        margin: -0.5rem -1rem 1rem -1rem;
+        border-bottom: 3px solid #FFD700;
+        box-shadow: 0 4px 8px rgba(255, 107, 0, 0.4);
     }
 
     .bloomberg-title {
         font-family: 'Inter', sans-serif;
-        font-size: 3rem;
+        font-size: 2.2rem;
         font-weight: 800;
         color: #000000;
         margin: 0;
@@ -56,9 +68,9 @@ BLOOMBERG_CSS = """
 
     .bloomberg-subtitle {
         font-family: 'Roboto Mono', monospace;
-        font-size: 1rem;
+        font-size: 0.75rem;
         color: #1a1a1a;
-        margin: 0.5rem 0 0 0;
+        margin: 0.25rem 0 0 0;
         font-weight: 500;
         letter-spacing: 1px;
     }
@@ -66,26 +78,26 @@ BLOOMBERG_CSS = """
     /* Market ticker bar */
     .ticker-bar {
         background-color: #0a0a0a;
-        padding: 1rem 2rem;
-        margin: 0 0 3rem 0;
-        border-left: 5px solid #FF6B00;
-        border-right: 5px solid #FF6B00;
+        padding: 0.8rem 1.5rem;
+        margin: 0 0 1.5rem 0;
+        border-left: 4px solid #FF6B00;
+        border-right: 4px solid #FF6B00;
         font-family: 'Roboto Mono', monospace;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
 
     .ticker-item {
         display: inline-block;
-        margin-right: 2.5rem;
+        margin-right: 1.5rem;
     }
 
     .ticker-label {
         color: #666666;
-        margin-right: 0.7rem;
+        margin-right: 0.5rem;
         font-weight: 500;
     }
 
@@ -104,14 +116,14 @@ BLOOMBERG_CSS = """
         font-weight: 600;
     }
 
-    /* Quote card */
+    /* Quote card - COMPACT */
     .quote-card {
         background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-        border: 3px solid #FF6B00;
-        border-radius: 12px;
-        padding: 4rem 3rem;
-        margin: 3rem 0;
-        box-shadow: 0 12px 24px rgba(255, 107, 0, 0.3);
+        border: 2px solid #FF6B00;
+        border-radius: 8px;
+        padding: 2rem 2rem;
+        margin: 0.75rem 0;
+        box-shadow: 0 8px 16px rgba(255, 107, 0, 0.3);
         position: relative;
         overflow: hidden;
     }
@@ -119,9 +131,9 @@ BLOOMBERG_CSS = """
     .quote-card::before {
         content: '"';
         position: absolute;
-        top: -30px;
-        left: 30px;
-        font-size: 180px;
+        top: -20px;
+        left: 15px;
+        font-size: 100px;
         color: #FF6B00;
         opacity: 0.08;
         font-family: Georgia, serif;
@@ -130,25 +142,25 @@ BLOOMBERG_CSS = """
 
     .quote-header {
         font-family: 'Inter', sans-serif;
-        font-size: 1.3rem;
+        font-size: 1rem;
         color: #FFD700;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
         font-weight: 700;
-        border-bottom: 2px solid #333333;
-        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #333333;
+        padding-bottom: 0.5rem;
         text-align: center;
     }
 
     .quote-text {
         font-family: 'Roboto Mono', monospace;
-        font-size: 2.2rem;
-        line-height: 1.7;
+        font-size: 1.5rem;
+        line-height: 1.5;
         color: #FFFFFF;
         font-weight: 500;
         text-align: center;
-        padding: 2rem 1rem;
+        padding: 1rem 0.5rem;
         position: relative;
         z-index: 1;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -156,40 +168,79 @@ BLOOMBERG_CSS = """
 
     .quote-footer {
         font-family: 'Roboto Mono', monospace;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
         color: #888888;
         text-align: center;
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-        border-top: 2px solid #333333;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid #333333;
     }
 
-    /* Button styling */
+    /* Clock container - TIGHTER */
+    .clock-container {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        padding: 0.8rem 1.5rem;
+        margin: 0 0 1rem 0;
+        border-left: 3px solid #FF6B00;
+        border-right: 3px solid #FF6B00;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Engagement stats display */
+    .engagement-stats {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 0.85rem;
+        color: #FFD700;
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    /* Button styling - COMPACT */
     .stButton > button {
         background: linear-gradient(90deg, #FF6B00 0%, #FF8C00 100%);
         color: #000000;
         font-family: 'Inter', sans-serif;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         border: none;
-        border-radius: 6px;
-        padding: 0.8rem 2rem;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 8px rgba(255, 107, 0, 0.3);
+        letter-spacing: 0.5px;
+        box-shadow: 0 3px 6px rgba(255, 107, 0, 0.3);
         transition: all 0.3s ease;
     }
 
     .stButton > button:hover {
         background: linear-gradient(90deg, #FF8C00 0%, #FFA500 100%);
-        box-shadow: 0 6px 12px rgba(255, 107, 0, 0.5);
-        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(255, 107, 0, 0.5);
+        transform: translateY(-1px);
     }
 
-    /* Remove extra spacing */
-    .element-container {
-        margin: 0;
-        padding: 0;
+    /* Selectbox styling */
+    .stSelectbox {
+        margin: 0 !important;
+        padding: 0 !important;
     }
+
+    /* Reduce metric spacing */
+    [data-testid="metric-container"] {
+        gap: 0 !important;
+    }
+
+    .stMetric {
+        padding: 0 !important;
+    }
+
 </style>
 """
