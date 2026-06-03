@@ -150,4 +150,4 @@ col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
     if st.button("🔄 NEW QUOTE", use_container_width=True):
         st.session_state.current_quote = st.session_state.generator.get_random_quote()
-        st.experimental_rerun()
+        st.rerun()
