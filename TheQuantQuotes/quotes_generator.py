@@ -18,6 +18,7 @@ TRADING_QUOTES = [
     "Gamma scalping: because sleep is overrated",
     "Vol Risk Premium: good luck capturing that...",
     "Long gamma, short sanity",
+    "A 1Δ option on the day of expiry : the stuff traders' nightmares are made of",
 
     # Vega quotes
     "Vega hurts when you least expect it",
