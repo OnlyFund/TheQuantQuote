@@ -80,7 +80,7 @@ def add_like(quote: str) -> int:
 
     engagement[quote]["likes"] += 1
     save_engagement(engagement)
-
+    print(f'engagement {engagement} saved')
     return engagement[quote]["likes"]
 
 
