@@ -42,7 +42,7 @@ def save_engagement(engagement: Dict[str, Dict[str, int]]):
     Args:
         engagement: Dictionary with quote engagement data
     """
-    ensure_data_dir()
+    
     with open(ENGAGEMENT_FILE, "w") as f:
         json.dump(engagement, f, indent=2)
 
