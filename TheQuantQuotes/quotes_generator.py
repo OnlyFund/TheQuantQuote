@@ -19,6 +19,9 @@ TRADING_QUOTES = [
     "Vol Risk Premium: good luck capturing that...",
     "Long gamma, short sanity",
     "A 1Δ option on the day of expiry : the stuff traders' nightmares are made of",
+    "Stoch-Local Vol is not a model choice, it's a commitment issue",
+    "Every time that an axe gets filled, a sales trader gets his wings",
+
 
     # Vega quotes
     "Vega hurts when you least expect it",
