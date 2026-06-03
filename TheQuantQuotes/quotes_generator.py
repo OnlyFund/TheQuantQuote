@@ -541,7 +541,7 @@ TRADING_QUOTES = [
     "Delta conventions: 25-delta means something different everywhere",
     "Premium-adjusted delta: because regular delta was too simple",
     "Spot delta vs forward delta: choose your poison",
-    "Eskimos have 4 ways of saying snow, FX has 4 ways of saying ATM strike",
+    "Eskimos have 4 different ways of saying snow, FX has 4 different ways of saying ATM strike",
     "FX vol quotes: bid-offer wider than the smile",
     "ATMF vs ATMS: fighting over basis points",
 
