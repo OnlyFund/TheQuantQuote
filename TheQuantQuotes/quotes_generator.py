@@ -184,7 +184,8 @@ TRADING_QUOTES = [
     "Volga positive until it's not",
     "Vomma: the Greek that breaks your vol models",
     "Volga hedging: theoretical in textbooks, impossible in practice",
-    "Long volga, short sleep",
+    "Short volga, short sleep",
+    "Short Cross-Gamma: because shock therapy isn't working anymore",
     "Volga convexity: expensive and misunderstood",
 
     # Charm quotes
