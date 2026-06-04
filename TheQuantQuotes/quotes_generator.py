@@ -707,285 +707,119 @@ TRADING_QUOTES = [
 
 class QuoteGenerator:
     """
-    Enhanced quote generator with better randomization and history tracking.
-    Prevents recent quotes from repeating.
+    Fully stateless random quote generator.
+    No memory, no history, no bias.
     """
 
-    def __init__(self, history_size: int = 20):
-        """
-        Initialize quote generator.
+    def __init__(self, quotes: List[str]):
+        self.quotes = quotes
 
-        Args:
-            history_size: Number of recent quotes to track (prevents repeats)
-        """
-        self.quotes = TRADING_QUOTES.copy()
-        self.history = deque(maxlen=history_size)
-        self.unused_quotes = self.quotes.copy()
-        random.shuffle(self.unused_quotes)
+    # ----------------------------
+    # Core randomness
+    # ----------------------------
 
-    def _get_next_quote(self, candidates: List[str]) -> str:
-        """
-        Get next quote from candidates, avoiding recent history.
+    def get_random_quote(self, seed: Optional[int] = None) -> str:
+        """Return a single fully random quote."""
+        rng = random.Random(seed) if seed is not None else random
+        return rng.choice(self.quotes)
 
-        Args:
-            candidates: List of candidate quotes
+    def get_random_quotes(self, n: int = 1, seed: Optional[int] = None) -> List[str]:
+        """Return n random quotes (with replacement)."""
+        rng = random.Random(seed) if seed is not None else random
+        return [rng.choice(self.quotes) for _ in range(n)]
 
-        Returns:
-            Selected quote
-        """
-        # Filter out recently used quotes
-        available = [q for q in candidates if q not in self.history]
-
-        # If all quotes were recently used, reset and use all candidates
-        if not available:
-            available = candidates
-
-        # Select random quote
-        quote = random.choice(available)
-
-        # Add to history
-        self.history.append(quote)
-
-        return quote
-
-    def get_random_quote(self) -> str:
-        """Get a random trading quote with no recent repeats."""
-
-        # If we've used most quotes, reshuffle
-        if len(self.unused_quotes) < 10:
-            self.unused_quotes = self.quotes.copy()
-            random.shuffle(self.unused_quotes)
-
-        # Pop from unused quotes
-        quote = self.unused_quotes.pop()
-        self.history.append(quote)
-
-        return quote
-
-    def get_random_quotes(self, n: int = 1e6) -> List[str]:
-        """
-        Get multiple random unique quotes.
-
-        Args:
-            n: Number of quotes to return
-
-        Returns:
-            List of unique quotes
-        """
-        # Ensure we don't request more than available
+    def get_unique_random_quotes(self, n: int, seed: Optional[int] = None) -> List[str]:
+        """Return n unique random quotes (without replacement)."""
+        rng = random.Random(seed) if seed is not None else random
         n = min(n, len(self.quotes))
+        return rng.sample(self.quotes, n)
 
-        # Get quotes that aren't in recent history
-        available = [q for q in self.quotes if q not in self.history]
+    # ----------------------------
+    # Filtered randomness (stateless)
+    # ----------------------------
 
-        # If not enough available, use all quotes
-        if len(available) < n:
-            available = self.quotes.copy()
+    def get_quote_by_keyword(self, keyword: str, seed: Optional[int] = None) -> str:
+        """Return a random quote matching a keyword."""
+        rng = random.Random(seed) if seed is not None else random
 
-        # Sample without replacement
-        selected = random.sample(available, n)
+        matches = [q for q in self.quotes if keyword.lower() in q.lower()]
 
-        # Add to history
-        for quote in selected:
-            self.history.append(quote)
+        if not matches:
+            return rng.choice(self.quotes)
 
-        return selected
+        return rng.choice(matches)
 
-    def get_quote_by_greek(self, greek: str) -> str:
-        """
-        Get a random quote related to a specific Greek.
+    def get_quotes_by_keywords(self, keywords: List[str], n: int = 1, seed: Optional[int] = None) -> List[str]:
+        """Return random quotes matching any keyword."""
+        rng = random.Random(seed) if seed is not None else random
 
-        Args:
-            greek: Greek letter name (e.g., 'gamma', 'vega')
+        keywords = [k.lower() for k in keywords]
 
-        Returns:
-            Relevant quote or random quote if none found
-        """
-        greek_lower = greek.lower()
-        relevant_quotes = [q for q in self.quotes if greek_lower in q.lower()]
+        matches = [
+            q for q in self.quotes
+            if any(k in q.lower() for k in keywords)
+        ]
 
-        if relevant_quotes:
-            return self._get_next_quote(relevant_quotes)
-        else:
-            return self.get_random_quote()
+        if not matches:
+            matches = self.quotes
 
-    def get_quote_by_category(self, category: str) -> str:
-        """
-        Get a random quote from a specific category.
+        return [rng.choice(matches) for _ in range(n)]
 
-        Args:
-            category: Category name (e.g., 'volatility', 'fx', 'risk')
+    # ----------------------------
+    # Category-based randomness
+    # ----------------------------
 
-        Returns:
-            Relevant quote
-        """
-        category_keywords = {
-            'volatility': ['vol', 'vix', 'volatility'],
-            'greeks': ['gamma', 'vega', 'theta', 'delta', 'greek'],
-            'fx': ['fx', 'eurusd', 'cable', 'carry', 'spot'],
-            'risk': ['risk', 'hedge', 'loss'],
-            'desk': ['desk', 'trader', 'client', 'p&l'],
-            'humor': ['kill', 'trauma', 'nightmare', 'panic', 'regret'],
-            'exotic': ['exotic', 'barrier', 'asian', 'lookback', 'digital'],
-            'macro': ['nfp', 'cpi', 'fed', 'ecb', 'macro', 'economic'],
+    def get_category_quote(self, category: str, seed: Optional[int] = None) -> str:
+        """Return a random quote from a category (stateless filter)."""
+
+        rng = random.Random(seed) if seed is not None else random
+
+        category_map = {
+            "gamma": ["gamma"],
+            "vega": ["vega"],
+            "theta": ["theta", "time"],
+            "delta": ["delta"],
+            "vol": ["vol", "volatility", "smile", "skew"],
+            "fx": ["fx", "eurusd", "carry"],
+            "risk": ["risk", "hedge", "liquidity"],
+            "exotic": ["exotic", "barrier", "tarf", "autocall"],
+            "macro": ["cpi", "nfp", "fed", "ecb", "macro"],
         }
 
-        keywords = category_keywords.get(category.lower(), [])
+        keywords = category_map.get(category.lower(), [])
+        if not keywords:
+            return rng.choice(self.quotes)
 
-        if keywords:
-            relevant_quotes = [
-                q for q in self.quotes
-                if any(keyword in q.lower() for keyword in keywords)
-            ]
-
-            if relevant_quotes:
-                return self._get_next_quote(relevant_quotes)
-
-        return self.get_random_quote()
-
-    def get_high_order_greek_quote(self) -> str:
-        """Get a random quote about high-order Greeks."""
-        high_order_keywords = [
-            'vanna', 'volga', 'vomma', 'charm', 'veta',
-            'color', 'ultima', 'speed', 'zomma', 'second-order', 'third-order'
-        ]
-
-        relevant_quotes = [
+        matches = [
             q for q in self.quotes
-            if any(keyword in q.lower() for keyword in high_order_keywords)
+            if any(k in q.lower() for k in keywords)
         ]
 
-        return self._get_next_quote(relevant_quotes) if relevant_quotes else self.get_random_quote()
-
-    def get_macro_vol_quote(self) -> str:
-        """Get a random quote about economic data and macro volatility."""
-        macro_keywords = [
-            'nfp', 'cpi', 'fed', 'ecb', 'gdp', 'pmi', 'central bank',
-            'economic', 'macro', 'data release', 'fomc', 'inflation',
-            'unemployment', 'retail sales', 'election', 'earnings'
-        ]
-
-        relevant_quotes = [
-            q for q in self.quotes
-            if any(keyword in q.lower() for keyword in macro_keywords)
-        ]
-
-        return self._get_next_quote(relevant_quotes) if relevant_quotes else self.get_random_quote()
-
-    def get_event_vol_quote(self) -> str:
-        """Get a random quote about event volatility."""
-        event_keywords = [
-            'event', 'nfp', 'cpi', 'fomc', 'election', 'earnings',
-            'data release', 'surprise', 'consensus'
-        ]
-
-        relevant_quotes = [
-            q for q in self.quotes
-            if any(keyword in q.lower() for keyword in event_keywords)
-        ]
-
-        return self._get_next_quote(relevant_quotes) if relevant_quotes else self.get_random_quote()
-
-    def get_exotic_quote(self) -> str:
-        """Get a random quote about exotic options."""
-        exotic_keywords = [
-            'exotic', 'barrier', 'asian', 'lookback', 'digital',
-            'autocall', 'tarf', 'accumulator', 'structured', 'bermudan'
-        ]
-
-        relevant_quotes = [
-            q for q in self.quotes
-            if any(keyword in q.lower() for keyword in exotic_keywords)
-        ]
-
-        return self._get_next_quote(relevant_quotes) if relevant_quotes else self.get_random_quote()
-
-    def get_vol_surface_quote(self) -> str:
-        """Get a random quote about vol surface."""
-        surface_keywords = [
-            'surface', 'smile', 'skew', 'term structure', 'wing',
-            'atm', 'calibration', 'sabr', 'svi'
-        ]
-
-        relevant_quotes = [
-            q for q in self.quotes
-            if any(keyword in q.lower() for keyword in surface_keywords)
-        ]
-
-        return self._get_next_quote(relevant_quotes) if relevant_quotes else self.get_random_quote()
-
-    def reset_history(self):
-        """Reset the quote history."""
-        self.history.clear()
-        self.unused_quotes = self.quotes.copy()
-        random.shuffle(self.unused_quotes)
-
-    def get_stats(self) -> dict:
-        """Get statistics about quote usage."""
-        return {
-            'total_quotes': len(self.quotes),
-            'unused_quotes': len(self.unused_quotes),
-            'recent_history': len(self.history),
-            'history_size': self.history.maxlen
-        }
+        return rng.choice(matches if matches else self.quotes)
 
 
-# Create global instance
-_generator = QuoteGenerator()
+# ----------------------------
+# Global instance + helpers
+# ----------------------------
+
+_generator = QuoteGenerator(TRADING_QUOTES)
 
 
-# Convenience functions that use the global instance
-def get_random_quote() -> str:
-    """Get a random trading quote."""
-    return _generator.get_random_quote()
+def get_random_quote(seed: Optional[int] = None) -> str:
+    return _generator.get_random_quote(seed)
 
 
-def get_random_quotes(n: int = 1000000) -> List[str]:
-    """Get multiple random unique quotes."""
-    return _generator.get_random_quotes(n)
+def get_random_quotes(n: int = 1, seed: Optional[int] = None) -> List[str]:
+    return _generator.get_random_quotes(n, seed)
 
 
-def get_quote_by_greek(greek: str) -> str:
-    """Get a random quote related to a specific Greek."""
-    return _generator.get_quote_by_greek(greek)
+def get_unique_random_quotes(n: int, seed: Optional[int] = None) -> List[str]:
+    return _generator.get_unique_random_quotes(n, seed)
 
 
-def get_quote_by_category(category: str) -> str:
-    """Get a random quote from a specific category."""
-    return _generator.get_quote_by_category(category)
+def get_quote_by_keyword(keyword: str, seed: Optional[int] = None) -> str:
+    return _generator.get_quote_by_keyword(keyword, seed)
 
 
-def get_high_order_greek_quote() -> str:
-    """Get a random quote about high-order Greeks."""
-    return _generator.get_high_order_greek_quote()
-
-
-def get_macro_vol_quote() -> str:
-    """Get a random quote about macro volatility."""
-    return _generator.get_macro_vol_quote()
-
-
-def get_event_vol_quote() -> str:
-    """Get a random quote about event volatility."""
-    return _generator.get_event_vol_quote()
-
-
-def get_exotic_quote() -> str:
-    """Get a random quote about exotic options."""
-    return _generator.get_exotic_quote()
-
-
-def get_vol_surface_quote() -> str:
-    """Get a random quote about vol surface."""
-    return _generator.get_vol_surface_quote()
-
-
-def reset_quote_history():
-    """Reset the quote history."""
-    _generator.reset_history()
-
-
-def get_quote_stats() -> dict:
-    """Get statistics about quote usage."""
-    return _generator.get_stats()
-
+def get_category_quote(category: str, seed: Optional[int] = None) -> str:
+    return _generator.get_category_quote(category, seed)
