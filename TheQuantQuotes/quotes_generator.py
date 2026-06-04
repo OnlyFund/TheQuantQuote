@@ -264,81 +264,81 @@ TRADING_QUOTES = [
     # ========================================================================
 
     # NFP (Non-Farm Payrolls)
-    "NFP Friday: where FX vol goes to die or explode",
-    "NFP print: monthly reminder that models don't work",
-    "Pre-NFP positioning: everyone's hedged, nobody's safe",
-    "NFP vol: expensive before, worthless after",
-    "NFP miss: when the entire desk reprices at once",
-    "Trading NFP: because gambling wasn't exciting enough",
+    
+    
+    
+    
+    
+    
 
     # CPI quotes
-    "CPI print: when inflation becomes everyone's problem",
-    "CPI vol: central banks' nightmare, traders' opportunity",
-    "Hot CPI: vol spike, portfolio dive",
-    "CPI surprise: the only surprise is that we're surprised",
-    "Inflation data: where expectations go to die",
+    
+    
+    
+    
+    
 
     # Central Bank quotes
-    "ECB meeting: where dovish sounds hawkish",
-    "Central bank vol: expensive insurance against word choice",
-    "Central bank forward guidance: backward looking, sideways moving",
-    "Rate decision vol: priced in until it's not",
-    "Dot plot: where Fed members' dreams go public",
+    
+    
+    
+    
+    
 
     # GDP quotes
-    "GDP print: quarterly reminder that forecasts are fiction",
-    "GDP vol: boring until it matters",
-    "GDP miss: when the entire macro desk reprices",
+    
+    
+    
 
     # PMI quotes
-    "Manufacturing PMI: because someone still makes things",
-    "Services PMI: the data point nobody trusts but everyone trades",
+    
+    
 
     # Unemployment quotes
-    "Jobless claims: weekly vol lottery",
-    "Unemployment data: lagging indicator, leading vol spike",
+    
+    
 
     # General macro vol
-    "Economic data vol: expensive before, worthless after",
-    "Macro event risk: what you pay for, what you can't hedge",
-    "Data release vol: the market's way of saying 'I don't know'",
-    "Event vol premium: compensation for being wrong",
-    "Macro surprise: when consensus is confidently incorrect",
-    "Economic calendar: a schedule of upcoming pain",
-    "Data dependency: Fed's excuse, trader's nightmare",
-    "Macro vol smile: because economic data isn't normal either",
-    "Event-driven vol: expensive going in, worthless coming out",
-    "Consensus estimate: the average of wrong guesses",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     # Correlation in macro events
-    "Macro correlation: zero until it's one",
-    "Cross-asset vol: when everything moves together, badly",
+    
+    
     "Risk-off: when correlations go to one and liquidity goes to zero",
-    "Flight to quality: everyone running to the same exit",
+    
 
     # Vol surface around events
-    "Event vol surface: steep, expensive, and wrong",
-    "Pre-event skew: the market's fear made visible",
-    "Post-event vol collapse: from hero to zero in seconds",
+    
+    
+    
     "Event gamma: maximum risk, minimum reward",
 
     # Realized vs Implied around data
-    "Realized vol after NFP: always less than you paid",
-    "Implied vol before CPI: always more than you need",
-    "Vol risk premium: what you pay for peace of mind",
-    "Event vol decay: theta on steroids",
+    
+    
+    
+    
 
     # Trading around events
-    "Trading into data: brave or stupid?",
-    "Holding gamma through events: expensive therapy",
-    "Event straddle: betting on chaos, losing to theta",
-    "Macro hedge: expensive and ineffective",
+    
+    
+    
+    
     "Data release positioning: everyone's hedged, nobody's safe",
 
     # Quant meets macro
-    "Modeling macro vol: garbage in, garbage out",
-    "Economic forecasting: astrology with spreadsheets",
-    "Macro factor models: wrong but required",
+    
+    
+    
     "Nowcasting: being wrong in real-time",
 
     # Wisdom
@@ -572,32 +572,136 @@ TRADING_QUOTES = [
     "0DTE options: because weekly expiry wasn't degenerate enough",
     "SPX put skew: permanently expensive, occasionally worth it",
     "Swaptions: options on swaps, regrets on both",
+    
     # Hedge Fund / Multistrat quotes
-"Multistrat: because losing money in multiple ways is more efficient",
-"Diversification: correlation goes to one when your AUM goes to zero",
-"Risk parity: equal risk of failure across all strategies",
-"Fundamental analysis: right direction, wrong decade",
-"Technical analysis: pretty charts, ugly P&L",
-"Discretionary trading: conviction until conviction is wrong",
-"Quantitative strategies: backtesting on training data, blowing up on real data",
-"Factor investing: yesterday's anomaly, today's crowded trade",
-"Stat arb: finding inefficiencies that don't exist",
-"Pairs trading: convergence eventually, just not before bankruptcy",
-"Mean reversion: works great until prices revert to zero",
-"Momentum: buying strength, selling weakness, wrong both ways",
-"Sector rotation: yesterday's winners, today's bag holders",
-"Merger arb: arbitraging away your existence",
-"Macro hedge fund: right thesis, wrong timing, right losses",
-"Long/short equity: long pain, short gains",
-"Hedge fund: taking 2 and 20 to underperform SPY",
-"Portfolio optimization: maximizing correlations, minimizing returns",
-"Rebalancing: selling winners, buying losers, systematically wrong",
-"Leverage: amplifying skill and stupidity in equal measure",
-"Drawdown: the only guaranteed return in investing",
-"Tail hedging: expensive insurance against the inevitable",
-"Crisis alpha: alpha that only works during crises",
-"Crowded trade: when everyone's right until everyone's wrong",
-"Redemption notice: the market's way of saying 'timing'",
+    "Multistrat: because losing money in multiple ways is more efficient",
+    "Diversification: correlation goes to one when your AUM goes to zero",
+    "Risk parity: equal risk of failure across all strategies",
+    "Fundamental analysis: right direction, wrong decade",
+    "Technical analysis: pretty charts, ugly P&L",
+    "Discretionary trading: conviction until conviction is wrong",
+    "Quantitative strategies: backtesting on training data, blowing up on real data",
+    "Factor investing: yesterday's anomaly, today's crowded trade",
+    "Stat arb: finding inefficiencies that don't exist",
+    "Pairs trading: convergence eventually, just not before bankruptcy",
+    "Mean reversion: works great until prices revert to zero",
+    "Momentum: buying strength, selling weakness, wrong both ways",
+    "Sector rotation: yesterday's winners, today's bag holders",
+    "Merger arb: arbitraging away your existence",
+    "Macro hedge fund: right thesis, wrong timing, right losses",
+    "Long/short equity: long pain, short gains",
+    "Hedge fund: taking 2 and 20 to underperform SPY",
+    "Portfolio optimization: maximizing correlations, minimizing returns",
+    "Rebalancing: selling winners, buying losers, systematically wrong",
+    "Leverage: amplifying skill and stupidity in equal measure",
+    "Drawdown: the only guaranteed return in investing",
+    "Tail hedging: expensive insurance against the inevitable",
+    "Crisis alpha: alpha that only works during crises",
+    "Crowded trade: when everyone's right until everyone's wrong",
+    "Redemption notice: the market's way of saying 'timing'",
+
+
+# Added quotes
+    "Gamma is temporary, screenshots are forever",
+    "Long gamma, short career expectancy",
+    "Gamma doesn't care about your thesis",
+    "The market giveth, gamma taketh away",
+    "Gamma exposure: choose violence",
+    "Gamma hedge completed, disaster postponed",
+    "Every gamma trade starts as a good idea",
+    "Gamma scalping: earning pennies, risking aneurysms",
+    "Gamma is just leverage wearing glasses",
+    "Short gamma, long explanations",
+    "Vega always moves after you've hedged it",
+    "Long vega, short confidence",
+    "Vega P&L: now featuring random numbers",
+    "Vol expansion: nature healing",
+    "Vol compression: trader depression",
+    "Vega doesn't hurt until it does",
+    "Vol traders call it opportunity, accountants call it volatility",
+    "Long vol: eventually correct, immediately unemployed",
+    "Short vol: collecting premiums from future you",
+    "Vega is just gamma with extra steps",
+    "Theta: charging rent on borrowed hope",
+    "Theta never misses payroll",
+    "Theta harvest season",
+    "Time decay: undefeated since forever",
+    "Theta is the internship of P&L",
+    "Weekend theta: thank you for your donation",
+    "Theta positive, emotionally negative",
+    "Theta: slow violence",
+    "The clock is your biggest counterparty",
+    "Every option expires worthless eventually",
+    "Delta neutral, directionally confused",
+    "Delta hedge first, ask questions later",
+    "Your directional view is showing",
+    "Delta: the gateway Greek",
+    "Delta one, stress level one hundred",
+    "Spot moved. There goes the hedge.",
+    "Delta hedging: solving today's problem tomorrow",
+    "Flat delta, not flat emotions",
+    "The market chose a direction for me",
+    "Delta is temporary, slippage is forever",
+    "The smile is smiling at your losses",
+    "Skew remembers every crisis",
+    "Every surface is arbitrage-free until inspected",
+    "The wings know things",
+    "Skew is fear with decimal places",
+    "Surface calibrated, reality uncooperative",
+    "Smile fitting: curve fitting with consequences",
+    "The surface moved because it felt like it",
+    "Local vol, global pain",
+    "Every skew trade becomes a timing trade",
+    "Marked to market, judged by management",
+    "The spreadsheet says yes",
+    "The model says maybe",
+    "Risk approved it. That's concerning.",
+    "Nothing is more permanent than a temporary hedge",
+    "The trade looked better yesterday",
+    "Every position is a hedge against happiness",
+    "I trust the model. I fear the market.",
+    "The book is balanced, the trader isn't",
+    "P&L explain pending divine intervention",
+    "Assume normality, receive abnormal outcomes",
+    "The error term has entered the chat",
+    "Statistically significant, economically irrelevant",
+    "The backtest was magnificent",
+    "Out-of-sample is where dreams go to die",
+    "Confidence interval: confidently wrong",
+    "Regression found a relationship. Reality disagreed.",
+    "Correlation: friendship until stress arrives",
+    "The model converged. The trade didn't.",
+    "Machine learning: fitting noise faster",
+    "One more Greek should fix this",
+    "There is always another Greek",
+    "The Greeks send their regards",
+    "Greek-neutral, problem-positive",
+    "The hedge has hedges now",
+    "Greeks explained everything except the losses",
+    "Cross-greeks: collaborative suffering",
+    "Higher-order Greeks, lower-order judgment",
+    "The Greeks are strong with this loss",
+    "Delta was never the problem",
+    "Conviction peaks at the top",
+    "The market heard your stop",
+    "Every trader is a volatility seller eventually",
+    "Patience is a position",
+    "The trade worked until money was involved",
+    "Your best trade was the one you didn't do",
+    "FOMO is not a strategy",
+    "Risk management ruins great stories",
+    "Hope is not executable",
+    "The market rewards humility eventually",
+    "P&L is the final peer review",
+    "Green days build confidence, red days build character",
+    "Attribution complete, mystery remains",
+    "Profit is temporary, screenshots are eternal",
+    "Every drawdown starts small",
+    "P&L: the universal language",
+    "The market audited my assumptions",
+    "Performance review by mark-to-market",
+    "Today's alpha is tomorrow's beta",
+    "The bonus is path dependent",
 ]
 
 
