@@ -13,16 +13,19 @@ from quote_engagement import (
     add_share,
     get_quote_engagement,
 )
-
+from analytics import track
 # ============================================================================
 # PAGE CONFIGURATION
 # ============================================================================
 
 st.set_page_config(**PAGE_CONFIG)
-from analytics import track
-if 'app_loaded' not in st.session_state:
-    track('app_opened')
+
+if "app_loaded" not in st.session_state:
     st.session_state.app_loaded = True
+    try:
+        track("app_opened")
+    except Exception:
+        pass
 
 # Enhanced CSS
 ENHANCED_CSS = BLOOMBERG_CSS + """
