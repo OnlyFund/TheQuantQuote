@@ -106,7 +106,7 @@ if "current_quote" not in st.session_state:
 
 st.markdown("""
 <div class="bloomberg-header">
-    <div class="bloomberg-title">🖥️ GLOOMBERG</div>
+    <div class="bloomberg-title">🖥️🖥️ GLOOMBERG</div>
     <div class="bloomberg-subtitle">
         Options & Derivatives | Market Intelligence | Sell-Side & Buy-Side
     </div>
