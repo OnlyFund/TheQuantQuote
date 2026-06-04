@@ -76,6 +76,21 @@ div[data-testid="stMetricLabel"] {
         letter-spacing: 2px;
         font-weight: 600;
     }
+
+/* Target all text inside metric labels */
+    [data-testid="stMetricLabel"] * {
+        color: #FF6B00 !important;
+    }
+
+    /* Force override for metric labels */
+    .clock-container div[data-testid="stMetricLabel"] > div {
+        color: #FF6B00 !important;
+    }
+
+    .clock-container label {
+        color: #FF6B00 !important;
+    }
+    
     
 .engagement-stats {
     display: flex;
