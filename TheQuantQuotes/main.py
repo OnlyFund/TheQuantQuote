@@ -67,7 +67,16 @@ div[data-testid="stMetricLabel"] {
     letter-spacing: 2px;
     font-weight: 600;
 }
-
+/* Metric Label (City Names) - Orange */
+    div[data-testid="stMetricLabel"] {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        color: #FF6B00 !important;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+    
 .engagement-stats {
     display: flex;
     gap: 2rem;
