@@ -109,17 +109,27 @@ st.markdown("""
 
 
 # ============================================================================
-# WORLD CLOCK
+# WORLD CLOCK - SIDE BY SIDE
 # ============================================================================
 
 st.markdown('<div class="clock-container">', unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
-
 now = arrow.now()
-st.metric("NEW YORK", now.to('America/New_York').format('HH:mm:ss'))
-st.metric("LONDON", now.to('Europe/London').format('HH:mm:ss'))
-st.metric("TOKYO", now.to('Asia/Tokyo').format('HH:mm:ss'))
+
+ny_time = now.to('America/New_York').format('HH:mm:ss')
+london_time = now.to('Europe/London').format('HH:mm:ss')
+tokyo_time = now.to('Asia/Tokyo').format('HH:mm:ss')
+
+col1, col2, col3 = st.columns(3, gap="large")
+
+with col1:
+    st.metric(label="NEW YORK", value=ny_time)
+
+with col2:
+    st.metric(label="LONDON", value=london_time)
+
+with col3:
+    st.metric(label="TOKYO", value=tokyo_time)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
