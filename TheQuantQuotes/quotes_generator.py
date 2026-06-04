@@ -23,6 +23,8 @@ TRADING_QUOTES = [
     "Every time that an axe gets filled, a sales trader gets his wings",
     "USDJPY drops 1% - maybe something, probably nothing",
     'Zero: the only true answer to the question "How low vols can go"',
+    'Short vol smile - the lifespan of a Thanksgiving turkey',
+    'Long gamma, short patience',
 
 
     # Vega quotes
