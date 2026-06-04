@@ -53,6 +53,12 @@ div[data-testid="stMetricValue"] {
     letter-spacing: 2px;
 }
 
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] div,
+div[data-testid="stMetricLabel"] span,
+div[data-testid="stMetricLabel"] p {
+    color: #FFD700 !important;  /* or #FFFFFF */
+    
 div[data-testid="stMetricLabel"] {
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
