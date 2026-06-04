@@ -19,6 +19,10 @@ from quote_engagement import (
 # ============================================================================
 
 st.set_page_config(**PAGE_CONFIG)
+from analytics import track
+if 'app_loaded' not in st.session_state:
+    track('app_opened')
+    st.session_state.app_loaded = True
 
 # Enhanced CSS
 ENHANCED_CSS = BLOOMBERG_CSS + """
@@ -105,25 +109,22 @@ st.markdown(ENHANCED_CSS, unsafe_allow_html=True)
 # INITIALIZE QUOTE GENERATOR & ENGAGEMENT
 # ============================================================================
 
-if "generator" not in st.session_state:
+if 'generator' not in st.session_state:
     st.session_state.generator = QuoteGenerator(history_size=30)
 
-if "current_quote" not in st.session_state:
+if 'current_quote' not in st.session_state:
     st.session_state.current_quote = st.session_state.generator.get_random_quote()
 
 # ============================================================================
 # HEADER
 # ============================================================================
 
-st.markdown(
-    """
+st.markdown("""
 <div class="bloomberg-header">
     <div class="bloomberg-title">🖥️🖥️ GLOOMBERG</div>
     <div class="bloomberg-subtitle">Options & Derivatives | Market Intelligence | Sell-Side & Buy-Side</div>
 </div>
-""",
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)
 
 # ============================================================================
 # WORLD CLOCK - STATIC (Updates on button click)
@@ -134,9 +135,9 @@ st.markdown('<div class="clock-container">', unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 
 now = arrow.now()
-ny_time = now.to("America/New_York").format("HH:mm:ss")
-london_time = now.to("Europe/London").format("HH:mm:ss")
-tokyo_time = now.to("Asia/Tokyo").format("HH:mm:ss")
+ny_time = now.to('America/New_York').format('HH:mm:ss')
+london_time = now.to('Europe/London').format('HH:mm:ss')
+tokyo_time = now.to('Asia/Tokyo').format('HH:mm:ss')
 
 with col1:
     st.metric("NEW YORK", ny_time)
@@ -147,17 +148,30 @@ with col2:
 with col3:
     st.metric("TOKYO", tokyo_time)
 
-st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================================================
 # MAIN QUOTE DISPLAY
 # ============================================================================
 
 current_quote = st.session_state.current_quote
-current_date = arrow.now().format("MMMM DD, YYYY")
 
-st.markdown(
-    f"""
+if (
+    "last_tracked_quote" not in st.session_state
+    or st.session_state.last_tracked_quote != current_quote
+):
+    track(
+        "quote_viewed",
+        {
+            "quote": current_quote[:100]
+        }
+    )
+
+    st.session_state.last_tracked_quote = current_quote
+
+current_date = arrow.now().format('MMMM DD, YYYY')
+
+st.markdown(f"""
 <div class="quote-card">
     <div class="quote-header">💬 Quote of the Day</div>
     <div class="quote-text">{current_quote}</div>
@@ -165,25 +179,20 @@ st.markdown(
         {current_date} | Trading Desk Wisdom
     </div>
 </div>
-""",
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)
 
 # ============================================================================
-# ENGAGEMENT METRICS (Display current quote likes & shares)
+# ENGAGEMENT METRICS (Just display, no footer stats)
 # ============================================================================
 
 likes, shares = get_quote_engagement(current_quote)
 
-st.markdown(
-    f"""
+st.markdown(f"""
 <div class="engagement-stats">
     <div class="stat-item">❤️ <strong>{likes}</strong> Likes</div>
     <div class="stat-item">🔗 <strong>{shares}</strong> Shares</div>
 </div>
-""",
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)
 
 # ============================================================================
 # ENGAGEMENT BUTTONS (Like & Share Dropdown)
@@ -193,7 +202,15 @@ col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
 
 with col2:
     if st.button("❤️ LIKE", use_container_width=True, key="like_btn"):
+        track(
+            "quote_liked",
+            {
+                "quote": current_quote,
+            }
+        )
+
         new_likes = add_like(current_quote)
+
         st.success(f"Quote liked! Total: {new_likes}")
         st.rerun()
 
@@ -201,15 +218,9 @@ with col3:
     # Share dropdown menu
     share_option = st.selectbox(
         "🔗 SHARE TO:",
-        [
-            "-- Select Platform --",
-            "𝕏 Twitter",
-            "💼 LinkedIn",
-            "f Facebook",
-            "📧 Email",
-        ],
+        ["-- Select Platform --", "𝕏 Twitter", "💼 LinkedIn", "f Facebook", "📧 Email"],
         key="share_select",
-        label_visibility="collapsed",
+        label_visibility="collapsed"
     )
 
     if share_option != "-- Select Platform --":
@@ -232,12 +243,18 @@ with col3:
             "📧 Email": "email",
         }
 
-        add_share(current_quote, platform_key[share_option])
-        st.success(f"✅ Shared to {share_option}!")
-        st.markdown(
-            f"[Open {share_option}]({share_links[share_option]})",
-            unsafe_allow_html=True,
+        track(
+            "quote_shared",
+            {
+                "quote": current_quote,
+                "platform": platform_key[share_option],
+            }
         )
+
+        add_share(current_quote, platform_key[share_option])
+
+        st.success(f"✅ Shared to {share_option}!")
+        st.markdown(f"[Open {share_option}]({share_links[share_option]})", unsafe_allow_html=True)
 
 # ============================================================================
 # NEW QUOTE BUTTON (CENTERED)
@@ -247,7 +264,15 @@ col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
     if st.button("🔄 NEW QUOTE", use_container_width=True):
+        track(
+            "new_quote_requested",
+            {
+                "previous_quote": current_quote
+            }
+        )
+
         st.session_state.current_quote = (
             st.session_state.generator.get_random_quote()
         )
+
         st.rerun()
