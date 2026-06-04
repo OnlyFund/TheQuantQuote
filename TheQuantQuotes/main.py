@@ -6,14 +6,13 @@ Compatible with Streamlit 1.57
 import streamlit as st
 import arrow
 import urllib.parse
-from quotes_generator import QuoteGenerator
-from config import PAGE_CONFIG, BLOOMBERG_CSS
-from quote_engagement import (
-    add_like,
-    add_share,
-    get_quote_engagement,
-)
+
+from quotes_generator import QuoteGenerator, TRADING_QUOTES
+from quote_engagement import add_like, add_share, get_quote_engagement
 from analytics import track
+from config import PAGE_CONFIG, BLOOMBERG_CSS
+
+
 # ============================================================================
 # PAGE CONFIGURATION
 # ============================================================================
@@ -27,96 +26,73 @@ if "app_loaded" not in st.session_state:
     except Exception:
         pass
 
-# Enhanced CSS
+
+# ============================================================================
+# CSS
+# ============================================================================
+
 ENHANCED_CSS = BLOOMBERG_CSS + """
 <style>
-    .clock-container {
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-        padding: 1.5rem 2rem;
-        margin: 0 0 2rem 0;
-        border-left: 5px solid #FF6B00;
-        border-right: 5px solid #FF6B00;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    }
+.clock-container {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    padding: 1.5rem 2rem;
+    margin: 0 0 2rem 0;
+    border-left: 5px solid #FF6B00;
+    border-right: 5px solid #FF6B00;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
 
-    .stColumn {
-        text-align: center;
-    }
+.stColumn { text-align: center; }
 
-    /* Metric Value (Time) - Green */
-    div[data-testid="stMetricValue"] {
-        font-family: 'Roboto Mono', monospace;
-        font-size: 2rem;
-        color: #00FF00 !important;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-    }
+div[data-testid="stMetricValue"] {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    color: #00FF00 !important;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
 
-    /* Metric Label (City Names) - Orange */
-    div[data-testid="stMetricLabel"] {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.85rem;
-        color: #FF6B00 !important;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
-    }
+div[data-testid="stMetricLabel"] {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #FF6B00 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
 
-    /* Additional specificity for nested elements */
-    .clock-container div[data-testid="stMetricLabel"] {
-        color: #FF6B00 !important;
-    }
+.engagement-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    color: #FFD700;
+}
 
-    .clock-container div[data-testid="stMetricLabel"] > div {
-        color: #FF6B00 !important;
-    }
-
-    /* Target all text inside metric labels */
-    [data-testid="stMetricLabel"] * {
-        color: #FF6B00 !important;
-    }
-
-    /* Force override for metric labels */
-    .clock-container div[data-testid="stMetricLabel"] > div {
-        color: #FF6B00 !important;
-    }
-
-    .clock-container label {
-        color: #FF6B00 !important;
-    }
-
-    /* Engagement stats display */
-    .engagement-stats {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        margin-top: 1rem;
-        font-family: 'Roboto Mono', monospace;
-        font-size: 0.9rem;
-        color: #FFD700;
-    }
-
-    .stat-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 </style>
 """
 
 st.markdown(ENHANCED_CSS, unsafe_allow_html=True)
 
+
 # ============================================================================
-# INITIALIZE QUOTE GENERATOR & ENGAGEMENT
+# INITIALIZE GENERATOR (STATLESS VERSION)
 # ============================================================================
 
-if 'generator' not in st.session_state:
-    st.session_state.generator = QuoteGenerator(history_size=30)
+if "generator" not in st.session_state:
+    st.session_state.generator = QuoteGenerator(TRADING_QUOTES)
 
-if 'current_quote' not in st.session_state:
+if "current_quote" not in st.session_state:
     st.session_state.current_quote = st.session_state.generator.get_random_quote()
+
 
 # ============================================================================
 # HEADER
@@ -124,13 +100,16 @@ if 'current_quote' not in st.session_state:
 
 st.markdown("""
 <div class="bloomberg-header">
-    <div class="bloomberg-title">🖥️🖥️ GLOOMBERG</div>
-    <div class="bloomberg-subtitle">Options & Derivatives | Market Intelligence | Sell-Side & Buy-Side</div>
+    <div class="bloomberg-title">🖥️ GLOOMBERG</div>
+    <div class="bloomberg-subtitle">
+        Options & Derivatives | Market Intelligence | Sell-Side & Buy-Side
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
+
 # ============================================================================
-# WORLD CLOCK - STATIC (Updates on button click)
+# WORLD CLOCK
 # ============================================================================
 
 st.markdown('<div class="clock-container">', unsafe_allow_html=True)
@@ -138,23 +117,15 @@ st.markdown('<div class="clock-container">', unsafe_allow_html=True)
 col1, col2, col3 = st.columns(3)
 
 now = arrow.now()
-ny_time = now.to('America/New_York').format('HH:mm:ss')
-london_time = now.to('Europe/London').format('HH:mm:ss')
-tokyo_time = now.to('Asia/Tokyo').format('HH:mm:ss')
-
-with col1:
-    st.metric("NEW YORK", ny_time)
-
-with col2:
-    st.metric("LONDON", london_time)
-
-with col3:
-    st.metric("TOKYO", tokyo_time)
+st.metric("NEW YORK", now.to('America/New_York').format('HH:mm:ss'))
+st.metric("LONDON", now.to('Europe/London').format('HH:mm:ss'))
+st.metric("TOKYO", now.to('Asia/Tokyo').format('HH:mm:ss'))
 
 st.markdown('</div>', unsafe_allow_html=True)
 
+
 # ============================================================================
-# MAIN QUOTE DISPLAY
+# QUOTE DISPLAY
 # ============================================================================
 
 current_quote = st.session_state.current_quote
@@ -165,12 +136,10 @@ if (
 ):
     track(
         "quote_viewed",
-        {
-            "quote": current_quote[:100]
-        }
+        {"quote": current_quote[:100]}
     )
-
     st.session_state.last_tracked_quote = current_quote
+
 
 current_date = arrow.now().format('MMMM DD, YYYY')
 
@@ -184,8 +153,9 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+
 # ============================================================================
-# ENGAGEMENT METRICS (Just display, no footer stats)
+# ENGAGEMENT
 # ============================================================================
 
 likes, shares = get_quote_engagement(current_quote)
@@ -197,85 +167,71 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+
 # ============================================================================
-# ENGAGEMENT BUTTONS (Like & Share Dropdown)
+# BUTTONS
 # ============================================================================
 
 col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
 
+
+# ----------------------------
+# LIKE
+# ----------------------------
 with col2:
-    if st.button("❤️ LIKE", use_container_width=True, key="like_btn"):
-        track(
-            "quote_liked",
-            {
-                "quote": current_quote,
-            }
-        )
+    if st.button("❤️ LIKE", use_container_width=True):
+        track("quote_liked", {"quote": current_quote})
 
         new_likes = add_like(current_quote)
-
-        st.success(f"Quote liked! Total: {new_likes}")
+        st.success(f"Liked! Total: {new_likes}")
         st.rerun()
 
+
+# ----------------------------
+# SHARE
+# ----------------------------
 with col3:
-    # Share dropdown menu
     share_option = st.selectbox(
         "🔗 SHARE TO:",
         ["-- Select Platform --", "𝕏 Twitter", "💼 LinkedIn", "f Facebook", "📧 Email"],
-        key="share_select",
         label_visibility="collapsed"
     )
 
     if share_option != "-- Select Platform --":
-        # Prepare share text and URLs
         share_text = f'"{current_quote}" - GLOOMBERG Trading Quotes'
         encoded_text = urllib.parse.quote(share_text)
         quote_url = "https://github.com/harel2706/TheQuantQuote"
 
-        share_links = {
+        links = {
             "𝕏 Twitter": f"https://twitter.com/intent/tweet?text={encoded_text}&url={quote_url}",
             "💼 LinkedIn": f"https://www.linkedin.com/sharing/share-offsite/?url={quote_url}",
             "f Facebook": f"https://www.facebook.com/sharer/sharer.php?u={quote_url}",
-            "📧 Email": f"mailto:?subject={urllib.parse.quote('Check out this GLOOMBERG quote')}&body={urllib.parse.quote(share_text)}",
-        }
-
-        platform_key = {
-            "𝕏 Twitter": "twitter",
-            "💼 LinkedIn": "linkedin",
-            "f Facebook": "facebook",
-            "📧 Email": "email",
+            "📧 Email": f"mailto:?subject={urllib.parse.quote('GLOOMBERG Quote')}&body={urllib.parse.quote(share_text)}",
         }
 
         track(
             "quote_shared",
             {
                 "quote": current_quote,
-                "platform": platform_key[share_option],
+                "platform": share_option,
             }
         )
 
-        add_share(current_quote, platform_key[share_option])
+        add_share(current_quote, share_option)
 
-        st.success(f"✅ Shared to {share_option}!")
-        st.markdown(f"[Open {share_option}]({share_links[share_option]})", unsafe_allow_html=True)
+        st.success(f"Shared to {share_option}")
+        st.markdown(f"[Open link]({links[share_option]})", unsafe_allow_html=True)
+
 
 # ============================================================================
-# NEW QUOTE BUTTON (CENTERED)
+# NEW QUOTE (FULLY RANDOMIZED NOW)
 # ============================================================================
-
-col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
     if st.button("🔄 NEW QUOTE", use_container_width=True):
-        track(
-            "new_quote_requested",
-            {
-                "previous_quote": current_quote
-            }
-        )
+        track("new_quote_requested", {"previous_quote": current_quote})
 
-        st.session_state.current_quote = (
-            st.session_state.generator.get_random_quote()
-        )
+        # 🔥 stateless random selection every time
+        st.session_state.current_quote = st.session_state.generator.get_random_quote()
 
         st.rerun()
