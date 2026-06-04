@@ -25,9 +25,7 @@ TRADING_QUOTES = [
     'Zero: the only true answer to the question "How low vols can go"',
     'Short vol smile - the lifespan of a Thanksgiving turkey',
     'Long gamma, short patience',
-
-
-    # Vega quotes
+    
     "Vega hurts when you least expect it",
     "Long vega, short nerves",
     "Vega Hurts, Gamma Kills",
@@ -259,89 +257,10 @@ TRADING_QUOTES = [
     "Greeks convergence: when all your hedges fail simultaneously",
     "Dynamic Greeks: because static Greeks were too predictable",
 
-    # ========================================================================
-    # ECONOMIC DATA & MACRO VOL
-    # ========================================================================
-
-    # NFP (Non-Farm Payrolls)
-    
-    
-    
-    
-    
-    
-
-    # CPI quotes
-    
-    
-    
-    
-    
-
-    # Central Bank quotes
-    
-    
-    
-    
-    
-
-    # GDP quotes
-    
-    
-    
-
-    # PMI quotes
-    
-    
-
-    # Unemployment quotes
-    
-    
-
-    # General macro vol
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    # Correlation in macro events
-    
-    
     "Risk-off: when correlations go to one and liquidity goes to zero",
-    
-
-    # Vol surface around events
-    
-    
-    
     "Event gamma: maximum risk, minimum reward",
-
-    # Realized vs Implied around data
-    
-    
-    
-    
-
-    # Trading around events
-    
-    
-    
-    
     "Data release positioning: everyone's hedged, nobody's safe",
-
-    # Quant meets macro
-    
-    
-    
     "Nowcasting: being wrong in real-time",
-
-    # Wisdom
     "Economic data: the market's excuse to reprice",
     "Macro vol: can't predict it, can't hedge it, can't ignore it",
     "Event risk: what keeps vol traders employed",
@@ -599,9 +518,6 @@ TRADING_QUOTES = [
     "Crisis alpha: alpha that only works during crises",
     "Crowded trade: when everyone's right until everyone's wrong",
     "Redemption notice: the market's way of saying 'timing'",
-
-
-# Added quotes
     "Gamma is temporary, screenshots are forever",
     "Long gamma, short career expectancy",
     "Gamma doesn't care about your thesis",
