@@ -6,7 +6,7 @@ POSTHOG_API_KEY = st.secrets["POSTHOG_API_KEY"]
 
 posthog = Posthog(
     project_api_key=POSTHOG_API_KEY,
-    host="https://us.i.posthog.com"
+    host="https://app.posthog.com"
 )
 
 def get_user_id():
