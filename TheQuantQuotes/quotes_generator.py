@@ -618,6 +618,113 @@ TRADING_QUOTES = [
     "Performance review by mark-to-market",
     "Today's alpha is tomorrow's beta",
     "The bonus is path dependent",
+
+    # Oil Vol Classics
+    "Oil vol: where every geopolitical headline is a trading signal until it's not",
+    "Crude doesn't trend, it overreacts",
+    "Long oil vol, short world peace",
+    "WTI: the asset class with commitment issues",
+    "Every oil vol trader is a part-time geopolitical analyst",
+    "The cure for high oil prices is high oil prices. The cure for low oil prices is unemployment",
+    "Brent leads, WTI follows, everyone claims they knew",
+    "The Middle East sneezes, oil vol catches pneumonia",
+    "Oil traders don't predict wars, they just price them",
+    "Crude oil: one molecule, infinite narratives",
+
+    # Vol-Specific
+    "Oil vol carry: collecting premium from future headlines",
+    "Every short oil straddle comes with a free stress test",
+    "The smile is steep because the world is unstable",
+    "Oil skew: fear with a delivery point",
+    "Long gamma into OPEC, short gamma into retirement",
+    "Realized vol is what happened. Oil vol is what could happen",
+    "In crude, tail events are just events",
+    "The market prices a 5% move because 10% is possible",
+    "Oil vol sellers rent risk from history",
+    "Prompt vol: maximum uncertainty, minimum sleep",
+
+    # OPEC
+    "OPEC meetings: volatility earnings season",
+    "The hardest commodity to forecast is OPEC's mood",
+    "OPEC compliance: simultaneously 100% and 60%",
+    "Every OPEC headline is both bullish and bearish",
+    "OPEC cuts production. Traders cut years off their lives",
+    "OPEC guidance: less reliable than weather forecasts",
+    "Oil markets move on barrels. Vol moves on rumors",
+    "OPEC surprises nobody except the market",
+
+    # Inventories & Fundamentals
+    "Inventory builds are bearish until they're bullish",
+    "Every inventory number is wrong, but the reaction is real",
+    "Cushing: the world's most important parking lot",
+    "Storage optionality: because physical reality matters",
+    "Fundamentals matter eventually. Headlines matter now",
+    "Oil balances are precise estimates of uncertain guesses",
+    "The inventory report is just weekly P&L roulette",
+    "Barrels matter. Expectations matter more",
+
+    # Curve & Spread Humor
+    "The curve knows more than Twitter",
+    "Backwardation: getting paid to believe inventories are low",
+    "Contango: paying storage rent with hope",
+    "Prompt spread traders age in dog years",
+    "Calendar spreads: directional views for people in denial",
+    "The front month is where confidence goes to die",
+    "Curve trades: right thesis, wrong month",
+    "The curve is steep because reality is complicated",
+
+    # Physical Market & Refining
+    "Refinery outages: bullish for somebody",
+    "Physical traders know things. Paper traders know models",
+    "Every refinery turnaround is somebody else's surprise",
+    "Crack spreads: refining margins and trader sanity",
+    "The physical market settles arguments the hard way",
+    "Pipelines: basis risk with steel walls",
+    "Location differentials: same oil, different problems",
+
+    # April 2020 Classics
+    "WTI traded below zero. Reality remains optional",
+    "Negative oil prices: because finance wasn't weird enough",
+    "April 2020: when storage became an asset class",
+    "If oil can trade negative, your risk limits are too tight",
+    "Everyone remembers where they were when WTI broke physics",
+    "Negative prices: the market's way of checking if you're awake",
+
+    # Oil Vol Trader Insider Quotes
+    "Long oil vol, short certainty",
+    "The smile prices wars, hurricanes, and bad decisions",
+    "Every oil vol surface tells a different disaster story",
+    "Oil vol: buying insurance from people who read the same headlines",
+    "Commodity vol is macro with inventory constraints",
+    "Crude gamma: because geopolitical risk is path dependent",
+    "The wings aren't rich enough",
+    "Oil volatility: the only renewable energy source on the desk",
+    "Selling oil vol is picking up dollars in front of a drone strike",
+    "In crude markets, the tails have tails",
+
+    # Desk Humor
+    "Prompt crude: maximum liquidity, minimum conviction",
+    "Every oil trade starts with supply and ends with geopolitics",
+    "The model says fair value. The market says embargo",
+    "Short crude vol, long explanations",
+    "Crude options: where weather forecasts become risk factors",
+    "Hurricanes are just volatility catalysts with names",
+    "Oil traders watch tankers the way FX traders watch central banks",
+    "One refinery outage away from a new volatility regime",
+    "The spread moved because someone sneezed in Houston",
+    "Oil vol: all fun and games until the headline hits",
+
+    # Quant & Vol Surface
+    "Calibrating crude smiles: fitting geopolitical uncertainty to a spline",
+    "Oil skew: because upside and downside risks aren't invited equally",
+    "Local vol assumes peace. Markets don't",
+    "Stochastic volatility: because OPEC isn't deterministic",
+    "Every crude vol surface is a map of collective anxiety",
+    "The wings know things the ATM doesn't",
+    "Forward vol: today's uncertainty about tomorrow's uncertainty",
+    "Vol surface arbitrage: free money until the next headline",
+    "Commodity smiles: frowns in disguise",
+    "Black-Scholes never met a tanker blockade",
 ]
 
 
