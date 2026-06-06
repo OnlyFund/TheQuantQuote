@@ -567,7 +567,6 @@ TRADING_QUOTES = [
     "Weekend theta: thank you for your donation",
     "Theta positive, emotionally negative",
     "Theta: slow violence",
-    "The clock is your biggest counterparty",
     "Every option expires worthless eventually",
     "Delta neutral, directionally confused",
     "Delta hedge first, ask questions later",
