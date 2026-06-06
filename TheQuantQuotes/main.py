@@ -34,63 +34,145 @@ if "app_loaded" not in st.session_state:
 
 ENHANCED_CSS = BLOOMBERG_CSS + """
 <style>
+
+/* ============================================================================
+   CLOCK CONTAINER
+============================================================================ */
+
 .clock-container {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    background: linear-gradient(
+        135deg,
+        #0a0a0a 0%,
+        #1a1a1a 100%
+    );
+
     padding: 1.5rem 2rem;
-    margin: 0 0 2rem 0;
+    margin-bottom: 2rem;
+
     border-left: 5px solid #FF6B00;
     border-right: 5px solid #FF6B00;
+
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.60);
 }
 
-.stColumn { text-align: center; }
+/* ============================================================================
+   STREAMLIT COLUMNS
+============================================================================ */
 
-div[data-testid="stMetricValue"] {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2rem;
+.stColumn {
+    text-align: center;
+}
+
+/* ============================================================================
+   CLOCK VALUES (GREEN)
+============================================================================ */
+
+[data-testid="stMetricValue"] {
     color: #00FF00 !important;
-    font-weight: 700;
-    letter-spacing: 2px;
+
+    font-family: "Roboto Mono", monospace !important;
+
+    font-size: 2rem !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 2px !important;
+
+    text-shadow:
+        0 0 8px rgba(0,255,0,0.30);
 }
 
-div[data-testid="stMetricLabel"],
-div[data-testid="stMetricLabel"] div,
-div[data-testid="stMetricLabel"] span,
+/* ============================================================================
+   CITY LABELS (ORANGE)
+============================================================================ */
 
-/* Metric Label (City Names) - Orange */
-    div[data-testid="stMetricLabel"] p {
+[data-testid="stMetricLabel"] {
     color: #FF6B00 !important;
-    font-family: 'Inter', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
+
+    font-family: "Inter", sans-serif !important;
+
+    font-size: 0.85rem !important;
+
+    font-weight: 700 !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: 2px !important;
 }
 
-    .clock-container label {
-        color: #FF6B00 !important;
-    }
-    
-    
+/* Catch every possible nested element Streamlit uses */
+
+[data-testid="stMetricLabel"] * {
+    color: #FF6B00 !important;
+
+    font-family: "Inter", sans-serif !important;
+
+    text-transform: uppercase !important;
+
+    letter-spacing: 2px !important;
+}
+
+[data-testid="stMetricLabel"] div {
+    color: #FF6B00 !important;
+}
+
+[data-testid="stMetricLabel"] span {
+    color: #FF6B00 !important;
+}
+
+[data-testid="stMetricLabel"] p {
+    color: #FF6B00 !important;
+}
+
+[data-testid="stMetricLabel"] label {
+    color: #FF6B00 !important;
+}
+
+/* ============================================================================
+   OPTIONAL WHITE LABELS
+   Uncomment if you prefer white instead of orange
+============================================================================ */
+
+/*
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] * {
+    color: #FFFFFF !important;
+}
+*/
+
+/* ============================================================================
+   ENGAGEMENT STATS
+============================================================================ */
+
 .engagement-stats {
     display: flex;
-    gap: 2rem;
+
     justify-content: center;
+
+    gap: 2rem;
+
     margin-top: 1rem;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.9rem;
+
     color: #FFD700;
+
+    font-family: "Roboto Mono", monospace;
+
+    font-size: 0.9rem;
 }
 
 .stat-item {
     display: flex;
+
     align-items: center;
+
     gap: 0.5rem;
 }
+
 </style>
 """
-
-st.markdown(ENHANCED_CSS, unsafe_allow_html=True)
 
 
 # ============================================================================
