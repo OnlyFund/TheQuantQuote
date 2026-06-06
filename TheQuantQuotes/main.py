@@ -184,7 +184,7 @@ st.markdown(f"""
     <div class="quote-header">💬 Quote of the Day</div>
     <div class="quote-text">{current_quote}</div>
     <div class="quote-footer">
-        {current_date} | Trading Desk Wisdom
+        {current_date} | Trading Desks Ancient Wisdom
     </div>
 </div>
 """, unsafe_allow_html=True)
