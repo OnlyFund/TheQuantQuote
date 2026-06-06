@@ -239,23 +239,6 @@ with col2:
 
         st.success(f"Quote liked! Total: {new_likes}")
         st.rerun()
-# ============================================================================
-# NEW QUOTE BUTTON (CENTERED)
-# ============================================================================
 
-col1, col2, col3 = st.columns([1, 1, 1])
-
-with col2:
-    if st.button("🔄 NEW QUOTE", use_container_width=True):
-        track(
-            "new_quote_requested",
-            {
-                "previous_quote": current_quote
-            }
-        )
-
-        st.session_state.current_quote = (
-            st.session_state.generator.get_random_quote()
-        )
 
         st.rerun()
