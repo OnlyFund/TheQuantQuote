@@ -7,12 +7,13 @@ import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 import arrow
 import urllib.parse
-
-from quotes_generator import QuoteGenerator, TRADING_QUOTES
-from quote_engagement import add_like, add_share, get_quote_engagement
-from analytics import track
+from quotes_generator import QuoteGenerator
 from config import PAGE_CONFIG, BLOOMBERG_CSS
-
+from quote_engagement import (
+    add_like,
+    add_share,
+    get_quote_engagement,
+)
 
 # ============================================================================
 # PAGE CONFIGURATION
@@ -20,18 +21,12 @@ from config import PAGE_CONFIG, BLOOMBERG_CSS
 
 st.set_page_config(**PAGE_CONFIG)
 st_autorefresh(interval=1000, key="clock_refresh")
-if "app_loaded" not in st.session_state:
+from analytics import track
+if 'app_loaded' not in st.session_state:
+    track('app_opened')
     st.session_state.app_loaded = True
-    try:
-        track("app_opened")
-    except Exception:
-        pass
 
-
-# ============================================================================
-# CSS
-# ============================================================================
-
+# Enhanced CSS
 ENHANCED_CSS = BLOOMBERG_CSS + """
 <style>
     .clock-container {
@@ -107,16 +102,19 @@ ENHANCED_CSS = BLOOMBERG_CSS + """
         gap: 0.5rem;
     }
 </style>
+"""
+
+st.markdown(ENHANCED_CSS, unsafe_allow_html=True)
+
 # ============================================================================
-# INITIALIZE GENERATOR (STATLESS VERSION)
+# INITIALIZE QUOTE GENERATOR & ENGAGEMENT
 # ============================================================================
 
-if "generator" not in st.session_state:
-    st.session_state.generator = QuoteGenerator(TRADING_QUOTES)
+if 'generator' not in st.session_state:
+    st.session_state.generator = QuoteGenerator(history_size=30)
 
-if "current_quote" not in st.session_state:
+if 'current_quote' not in st.session_state:
     st.session_state.current_quote = st.session_state.generator.get_random_quote()
-
 
 # ============================================================================
 # HEADER
@@ -125,15 +123,12 @@ if "current_quote" not in st.session_state:
 st.markdown("""
 <div class="bloomberg-header">
     <div class="bloomberg-title">🖥️🖥️ GLOOMBERG</div>
-    <div class="bloomberg-subtitle">
-        Options & Derivatives | Market Intelligence | Sell-Side & Buy-Side
-    </div>
+    <div class="bloomberg-subtitle">Options & Derivatives | Market Intelligence | Sell-Side & Buy-Side</div>
 </div>
 """, unsafe_allow_html=True)
 
-
 # ============================================================================
-# WORLD CLOCK - SIDE BY SIDE
+# WORLD CLOCK - STATIC (Updates on button click)
 # ============================================================================
 
 st.markdown("""
@@ -144,28 +139,26 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-now = arrow.now()
+col1, col2, col3 = st.columns(3)
 
+now = arrow.now()
 ny_time = now.to('America/New_York').format('HH:mm:ss')
 london_time = now.to('Europe/London').format('HH:mm:ss')
 tokyo_time = now.to('Asia/Tokyo').format('HH:mm:ss')
 
-col1, col2, col3 = st.columns(3, gap="large")
-
 with col1:
-    st.metric(label="NEW YORK", value=ny_time)
+    st.metric("NEW YORK", ny_time)
 
 with col2:
-    st.metric(label="LONDON", value=london_time)
+    st.metric("LONDON", london_time)
 
 with col3:
-    st.metric(label="TOKYO", value=tokyo_time)
+    st.metric("TOKYO", tokyo_time)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-
 # ============================================================================
-# QUOTE DISPLAY
+# MAIN QUOTE DISPLAY
 # ============================================================================
 
 current_quote = st.session_state.current_quote
@@ -176,10 +169,12 @@ if (
 ):
     track(
         "quote_viewed",
-        {"quote": current_quote[:100]}
+        {
+            "quote": current_quote[:100]
+        }
     )
-    st.session_state.last_tracked_quote = current_quote
 
+    st.session_state.last_tracked_quote = current_quote
 
 current_date = arrow.now().format('MMMM DD, YYYY')
 
@@ -193,9 +188,8 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-
 # ============================================================================
-# ENGAGEMENT
+# ENGAGEMENT METRICS (Just display, no footer stats)
 # ============================================================================
 
 likes, shares = get_quote_engagement(current_quote)
@@ -207,71 +201,85 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-
 # ============================================================================
-# BUTTONS
+# ENGAGEMENT BUTTONS (Like & Share Dropdown)
 # ============================================================================
 
 col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
 
-
-# ----------------------------
-# LIKE
-# ----------------------------
 with col2:
-    if st.button("❤️ LIKE", use_container_width=True):
-        track("quote_liked", {"quote": current_quote})
+    if st.button("❤️ LIKE", use_container_width=True, key="like_btn"):
+        track(
+            "quote_liked",
+            {
+                "quote": current_quote,
+            }
+        )
 
         new_likes = add_like(current_quote)
-        st.success(f"Liked! Total: {new_likes}")
+
+        st.success(f"Quote liked! Total: {new_likes}")
         st.rerun()
 
-
-# ----------------------------
-# SHARE
-# ----------------------------
 with col3:
+    # Share dropdown menu
     share_option = st.selectbox(
         "🔗 SHARE TO:",
         ["-- Select Platform --", "𝕏 Twitter", "💼 LinkedIn", "f Facebook", "📧 Email"],
+        key="share_select",
         label_visibility="collapsed"
     )
 
     if share_option != "-- Select Platform --":
+        # Prepare share text and URLs
         share_text = f'"{current_quote}" - GLOOMBERG Trading Quotes'
         encoded_text = urllib.parse.quote(share_text)
         quote_url = "https://github.com/harel2706/TheQuantQuote"
 
-        links = {
+        share_links = {
             "𝕏 Twitter": f"https://twitter.com/intent/tweet?text={encoded_text}&url={quote_url}",
             "💼 LinkedIn": f"https://www.linkedin.com/sharing/share-offsite/?url={quote_url}",
             "f Facebook": f"https://www.facebook.com/sharer/sharer.php?u={quote_url}",
-            "📧 Email": f"mailto:?subject={urllib.parse.quote('GLOOMBERG Quote')}&body={urllib.parse.quote(share_text)}",
+            "📧 Email": f"mailto:?subject={urllib.parse.quote('Check out this GLOOMBERG quote')}&body={urllib.parse.quote(share_text)}",
+        }
+
+        platform_key = {
+            "𝕏 Twitter": "twitter",
+            "💼 LinkedIn": "linkedin",
+            "f Facebook": "facebook",
+            "📧 Email": "email",
         }
 
         track(
             "quote_shared",
             {
                 "quote": current_quote,
-                "platform": share_option,
+                "platform": platform_key[share_option],
             }
         )
 
-        add_share(current_quote, share_option)
+        add_share(current_quote, platform_key[share_option])
 
-        st.success(f"Shared to {share_option}")
-        st.markdown(f"[Open link]({links[share_option]})", unsafe_allow_html=True)
-
+        st.success(f"✅ Shared to {share_option}!")
+        st.markdown(f"[Open {share_option}]({share_links[share_option]})", unsafe_allow_html=True)
 
 # ============================================================================
-# NEW QUOTE (FULLY RANDOMIZED NOW)
+# NEW QUOTE BUTTON (CENTERED)
 # ============================================================================
+
+col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
     if st.button("🔄 NEW QUOTE", use_container_width=True):
-        track("new_quote_requested", {"previous_quote": current_quote})
+        track(
+            "new_quote_requested",
+            {
+                "previous_quote": current_quote
+            }
+        )
 
-        # 🔥 stateless random selection every time
-        st.session_state.current_quote = st.session_state.generator.get_random_quote()
+        st.session_state.current_quote = (
+            st.session_state.generator.get_random_quote()
+        )
 
         st.rerun()
