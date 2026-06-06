@@ -194,6 +194,9 @@ TRADING_QUOTES = [
     "P&L attribution: creative accounting for traders",
     "Daily P&L: the only number that matters",
     "Year-end P&L: when bonuses are decided and friendships end",
+    "Sell-side prestige gets you the interview, P&L gets you the offer",
+    "They ask about your edge. Your edge is that you need the job.",
+    "PM longevity at a multistrat is measured in drawdown events survived",
 
     # Vanna quotes
     "Vanna: when your delta hedge needs a hedge",
