@@ -209,8 +209,11 @@ col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
 
     # NEW QUOTE BUTTON (TOP)
-    if st.button("🔄 NEW QUOTE", use_container_width=True):
-
+    if st.button(
+    "🔄 NEW QUOTE",
+    use_container_width=True,
+    key="new_quote_button"
+):
         track(
             "new_quote_requested",
             {"previous_quote": current_quote}
