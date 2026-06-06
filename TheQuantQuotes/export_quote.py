@@ -1,4 +1,4 @@
-from html2inage import HTml2Image
+from html2inage import Html2Image
 import tempfile
 
 
