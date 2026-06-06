@@ -7,7 +7,7 @@ import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 import arrow
 import urllib.parse
-from quotes_generator import QuoteGenerator
+from quotes_generator import QuoteGenerator,TRADING_QUOTES
 from config import PAGE_CONFIG, BLOOMBERG_CSS
 from quote_engagement import (
     add_like,
@@ -111,7 +111,7 @@ st.markdown(ENHANCED_CSS, unsafe_allow_html=True)
 # ============================================================================
 
 if 'generator' not in st.session_state:
-    st.session_state.generator = QuoteGenerator()
+    st.session_state.generator = QuoteGenerator(TRADING_QUOTES)
 
 if 'current_quote' not in st.session_state:
     st.session_state.current_quote = st.session_state.generator.get_random_quote()
