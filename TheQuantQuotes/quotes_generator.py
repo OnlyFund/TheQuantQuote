@@ -769,12 +769,36 @@ TRADING_QUOTES = [
 
 class QuoteGenerator:
     """
-    Fully stateless random quote generator.
-    No memory, no history, no bias.
+    Shuffle-deck based quote generator.
+    No repeats until all quotes are exhausted.
     """
 
     def __init__(self, quotes: List[str]):
         self.quotes = quotes
+        self._deck: List[str] = []
+        self._recent: deque = deque(maxlen=max(1, len(quotes) // 4))
+
+    def _refill_deck(self) -> None:
+        self._deck = self.quotes[:]
+        random.shuffle(self._deck)
+
+    def _pop_from_deck(self) -> str:
+        if not self._deck:
+            self._refill_deck()
+        # avoid recent repeats by skipping up to 10 candidates
+        for _ in range(min(10, len(self._deck))):
+            candidate = self._deck[-1]
+            if candidate not in self._recent:
+                self._deck.pop()
+                self._recent.append(candidate)
+                return candidate
+            # move the unwanted candidate to a random earlier position
+            self._deck.pop()
+            self._deck.insert(random.randint(0, len(self._deck)), candidate)
+        # give up avoiding recency, just pop
+        candidate = self._deck.pop()
+        self._recent.append(candidate)
+        return candidate
 
     # ----------------------------
     # Core randomness
@@ -782,19 +806,31 @@ class QuoteGenerator:
 
     def get_random_quote(self, seed: Optional[int] = None) -> str:
         """Return a single fully random quote."""
-        rng = random.Random(seed) if seed is not None else random
-        return rng.choice(self.quotes)
+        if seed is not None:
+            return random.Random(seed).choice(self.quotes)
+        return self._pop_from_deck()
 
     def get_random_quotes(self, n: int = 1, seed: Optional[int] = None) -> List[str]:
         """Return n random quotes (with replacement)."""
-        rng = random.Random(seed) if seed is not None else random
-        return [rng.choice(self.quotes) for _ in range(n)]
+        if seed is not None:
+            rng = random.Random(seed)
+            return [rng.choice(self.quotes) for _ in range(n)]
+        return [self._pop_from_deck() for _ in range(n)]
 
     def get_unique_random_quotes(self, n: int, seed: Optional[int] = None) -> List[str]:
         """Return n unique random quotes (without replacement)."""
-        rng = random.Random(seed) if seed is not None else random
-        n = min(n, len(self.quotes))
-        return rng.sample(self.quotes, n)
+        if seed is not None:
+            rng = random.Random(seed)
+            n = min(n, len(self.quotes))
+            return rng.sample(self.quotes, n)
+        results = []
+        seen = set()
+        while len(results) < min(n, len(self.quotes)):
+            q = self._pop_from_deck()
+            if q not in seen:
+                seen.add(q)
+                results.append(q)
+        return results
 
     # ----------------------------
     # Filtered randomness (stateless)
@@ -802,30 +838,25 @@ class QuoteGenerator:
 
     def get_quote_by_keyword(self, keyword: str, seed: Optional[int] = None) -> str:
         """Return a random quote matching a keyword."""
-        rng = random.Random(seed) if seed is not None else random
-
         matches = [q for q in self.quotes if keyword.lower() in q.lower()]
-
-        if not matches:
-            return rng.choice(self.quotes)
-
-        return rng.choice(matches)
+        pool = matches if matches else self.quotes
+        if seed is not None:
+            return random.Random(seed).choice(pool)
+        candidate = self._pop_from_deck()
+        if keyword.lower() in candidate.lower():
+            return candidate
+        # fall back to random choice from matches
+        return random.choice(pool)
 
     def get_quotes_by_keywords(self, keywords: List[str], n: int = 1, seed: Optional[int] = None) -> List[str]:
         """Return random quotes matching any keyword."""
-        rng = random.Random(seed) if seed is not None else random
-
         keywords = [k.lower() for k in keywords]
-
-        matches = [
-            q for q in self.quotes
-            if any(k in q.lower() for k in keywords)
-        ]
-
-        if not matches:
-            matches = self.quotes
-
-        return [rng.choice(matches) for _ in range(n)]
+        matches = [q for q in self.quotes if any(k in q.lower() for k in keywords)]
+        pool = matches if matches else self.quotes
+        if seed is not None:
+            rng = random.Random(seed)
+            return [rng.choice(pool) for _ in range(n)]
+        return [random.choice(pool) for _ in range(n)]
 
     # ----------------------------
     # Category-based randomness
@@ -833,9 +864,6 @@ class QuoteGenerator:
 
     def get_category_quote(self, category: str, seed: Optional[int] = None) -> str:
         """Return a random quote from a category (stateless filter)."""
-
-        rng = random.Random(seed) if seed is not None else random
-
         category_map = {
             "gamma": ["gamma"],
             "vega": ["vega"],
@@ -847,18 +875,12 @@ class QuoteGenerator:
             "exotic": ["exotic", "barrier", "tarf", "autocall"],
             "macro": ["cpi", "nfp", "fed", "ecb", "macro"],
         }
-
         keywords = category_map.get(category.lower(), [])
-        if not keywords:
-            return rng.choice(self.quotes)
-
-        matches = [
-            q for q in self.quotes
-            if any(k in q.lower() for k in keywords)
-        ]
-
-        return rng.choice(matches if matches else self.quotes)
-
+        matches = [q for q in self.quotes if any(k in q.lower() for k in keywords)] if keywords else []
+        pool = matches if matches else self.quotes
+        if seed is not None:
+            return random.Random(seed).choice(pool)
+        return random.choice(pool)
 
 # ----------------------------
 # Global instance + helpers
