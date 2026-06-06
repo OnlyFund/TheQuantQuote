@@ -248,77 +248,8 @@ if st.session_state.last_quote != current_quote:
     st.session_state.last_quote = current_quote
 
 
-col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
+col1, col2,col4 = st.columns([1.5, 1, 1.5])
 
-with col3:
-
-    share_option = st.selectbox(
-        "🔗 SHARE TO:",
-        ["-- Select Platform --", "𝕏 Twitter", "f Facebook", "📧 Email", "🔗 LinkedIn"],
-        key="share_select",
-        label_visibility="collapsed"
-    )
-
-    # Only trigger once per selection
-    if (
-        share_option != "-- Select Platform --"
-        and share_option != st.session_state.get("last_share_option")
-    ):
-
-        st.session_state.last_share_option = share_option
-
-        # ----------------------------
-        # Share content
-        # ----------------------------
-        share_text = f'"{current_quote}" - GLOOMBERG Trading Quotes'
-        encoded_text = urllib.parse.quote(share_text)
-        quote_url = "https://github.com/harel2706/TheQuantQuote"
-
-        share_links = {
-            "𝕏 Twitter": (
-                f"https://twitter.com/intent/tweet?text={encoded_text}&url={quote_url}"
-            ),
-            "f Facebook": (
-                f"https://www.facebook.com/sharer/sharer.php?u={quote_url}"
-            ),
-            "📧 Email": (
-                f"mailto:?subject="
-                f"{urllib.parse.quote('Check out this GLOOMBERG quote')}"
-                f"&body={urllib.parse.quote(share_text)}"
-            ),
-            "🔗 LinkedIn": (
-                f"https://www.linkedin.com/sharing/share-offsite/?url={quote_url}"
-            ),
-        }
-
-        platform_key = {
-            "𝕏 Twitter": "twitter",
-            "f Facebook": "facebook",
-            "📧 Email": "email",
-            "🔗 LinkedIn": "linkedin",
-        }
-
-        # ----------------------------
-        # Analytics + tracking
-        # ----------------------------
-        track(
-            "quote_shared",
-            {
-                "quote": current_quote,
-                "platform": platform_key[share_option],
-            }
-        )
-
-        add_share(current_quote, platform_key[share_option])
-
-        # ----------------------------
-        # UI feedback
-        # ----------------------------
-        st.success(f"✅ Shared to {share_option}!")
-        st.markdown(
-            f"[Open {share_option}]({share_links[share_option]})",
-            unsafe_allow_html=True
-        )
 
 # ============================================================================
 # NEW QUOTE BUTTON (CENTERED)
