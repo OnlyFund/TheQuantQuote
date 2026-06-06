@@ -231,12 +231,22 @@ with col3:
         label_visibility="collapsed"
     )
 
-    # ============================================================================ 
-# SHARE SECTION (SAFE AGAINST AUTO-REFRESH DUPLICATES)
+# ============================================================================
+# SHARE SECTION (SAFE WITH AUTO-REFRESH + NO DUPLICATE KEYS)
 # ============================================================================
 
-if "last_share_option" not in st.session_state:
+import hashlib
+
+# Track quote changes
+if "last_quote" not in st.session_state:
+    st.session_state.last_quote = current_quote
+
+# Reset share state when quote changes
+if st.session_state.last_quote != current_quote:
+    st.session_state.share_select = "-- Select Platform --"
     st.session_state.last_share_option = None
+    st.session_state.last_quote = current_quote
+
 
 col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
 
@@ -249,66 +259,66 @@ with col3:
         label_visibility="collapsed"
     )
 
-    if share_option != "-- Select Platform --":
+    # Only trigger once per selection
+    if (
+        share_option != "-- Select Platform --"
+        and share_option != st.session_state.get("last_share_option")
+    ):
 
-        # Prevent duplicate triggers on rerun (important due to st_autorefresh)
-        if share_option != st.session_state.last_share_option:
+        st.session_state.last_share_option = share_option
 
-            st.session_state.last_share_option = share_option
+        # ----------------------------
+        # Share content
+        # ----------------------------
+        share_text = f'"{current_quote}" - GLOOMBERG Trading Quotes'
+        encoded_text = urllib.parse.quote(share_text)
+        quote_url = "https://github.com/harel2706/TheQuantQuote"
 
-            # ----------------------------
-            # Build share content
-            # ----------------------------
-            share_text = f'"{current_quote}" - GLOOMBERG Trading Quotes'
-            encoded_text = urllib.parse.quote(share_text)
-            quote_url = "https://github.com/harel2706/TheQuantQuote"
+        share_links = {
+            "𝕏 Twitter": (
+                f"https://twitter.com/intent/tweet?text={encoded_text}&url={quote_url}"
+            ),
+            "f Facebook": (
+                f"https://www.facebook.com/sharer/sharer.php?u={quote_url}"
+            ),
+            "📧 Email": (
+                f"mailto:?subject="
+                f"{urllib.parse.quote('Check out this GLOOMBERG quote')}"
+                f"&body={urllib.parse.quote(share_text)}"
+            ),
+            "🔗 LinkedIn": (
+                f"https://www.linkedin.com/sharing/share-offsite/?url={quote_url}"
+            ),
+        }
 
-            share_links = {
-                "𝕏 Twitter": (
-                    f"https://twitter.com/intent/tweet?"
-                    f"text={encoded_text}&url={quote_url}"
-                ),
-                "f Facebook": (
-                    f"https://www.facebook.com/sharer/sharer.php?u={quote_url}"
-                ),
-                "📧 Email": (
-                    f"mailto:?subject="
-                    f"{urllib.parse.quote('Check out this GLOOMBERG quote')}"
-                    f"&body={urllib.parse.quote(share_text)}"
-                ),
-                "🔗 LinkedIn": (
-                    f"https://www.linkedin.com/sharing/share-offsite/?url={quote_url}"
-                ),
+        platform_key = {
+            "𝕏 Twitter": "twitter",
+            "f Facebook": "facebook",
+            "📧 Email": "email",
+            "🔗 LinkedIn": "linkedin",
+        }
+
+        # ----------------------------
+        # Analytics + tracking
+        # ----------------------------
+        track(
+            "quote_shared",
+            {
+                "quote": current_quote,
+                "platform": platform_key[share_option],
             }
+        )
 
-            platform_key = {
-                "𝕏 Twitter": "twitter",
-                "f Facebook": "facebook",
-                "📧 Email": "email",
-                "🔗 LinkedIn": "linkedin",
-            }
+        add_share(current_quote, platform_key[share_option])
 
-            # ----------------------------
-            # Analytics + persistence
-            # ----------------------------
-            track(
-                "quote_shared",
-                {
-                    "quote": current_quote,
-                    "platform": platform_key[share_option],
-                }
-            )
-
-            add_share(current_quote, platform_key[share_option])
-
-            # ----------------------------
-            # UI feedback
-            # ----------------------------
-            st.success(f"✅ Shared to {share_option}!")
-            st.markdown(
-                f"[Open {share_option}]({share_links[share_option]})",
-                unsafe_allow_html=True
-            )
+        # ----------------------------
+        # UI feedback
+        # ----------------------------
+        st.success(f"✅ Shared to {share_option}!")
+        st.markdown(
+            f"[Open {share_option}]({share_links[share_option]})",
+            unsafe_allow_html=True
+        )
 
 # ============================================================================
 # NEW QUOTE BUTTON (CENTERED)
