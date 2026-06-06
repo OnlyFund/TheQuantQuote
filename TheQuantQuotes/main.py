@@ -198,15 +198,13 @@ likes, shares = get_quote_engagement(current_quote)
 st.markdown(f"""
 <div class="engagement-stats">
     <div class="stat-item">❤️ <strong>{likes}</strong> Likes</div>
-    <div class="stat-item">🔗 <strong>{shares}</strong> Shares</div>
-</div>
 """, unsafe_allow_html=True)
 
 # ============================================================================
 # ENGAGEMENT BUTTONS (Like & Share Dropdown)
 # ============================================================================
 
-col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
+col1, col2 = st.columns([1.5, 1,])
 
 with col2:
     if st.button("❤️ LIKE", use_container_width=True, key="like_btn"):
@@ -222,14 +220,6 @@ with col2:
         st.success(f"Quote liked! Total: {new_likes}")
         st.rerun()
 
-with col3:
-    # Share dropdown menu
-    share_option = st.selectbox(
-        "🔗 SHARE TO:",
-        ["-- Select Platform --", "𝕏 Twitter",  "f Facebook", "📧 Email"],
-        key="share_select",
-        label_visibility="collapsed"
-    )
 
 # ============================================================================
 # SHARE SECTION (SAFE WITH AUTO-REFRESH + NO DUPLICATE KEYS)
