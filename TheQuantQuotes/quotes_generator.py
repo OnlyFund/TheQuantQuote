@@ -617,7 +617,6 @@ TRADING_QUOTES = [
     "Greeks explained everything except the losses",
     "Cross-greeks: collaborative suffering",
     "Higher-order Greeks, lower-order judgment",
-    "The Greeks are strong with this loss",
     "Delta was never the problem",
     "Conviction peaks at the top",
     "The market heard your stop",
