@@ -762,7 +762,27 @@ TRADING_QUOTES = [
     "Risk is just narrative until path dependency turns it mythic.",
     "The trader is Odysseus: surviving regimes, not forecasting them.",
     "Smile steepening is the market whispering about disaster probability.",
-    "Every book is a tragedy; pnl just decides the ending date."
+    "Every book is a tragedy; pnl just decides the ending date.",
+
+    "Middle office knows where the bodies are buried.",
+    "P&L is just a story until it settles.",
+    "The trade isn't done until Ops says it is.",
+    "If it needs a manual fix, it will break again.",
+    "That 'small position' has a funny way of growing.",
+    "Every hero trade starts with 'this one's different'.",
+    "Risk says no. Trader says 'just this once'.",
+    "The model is fine. Reality disagrees.",
+    "Nothing is wrong until reconciliation day.",
+    "The spreadsheet works until it doesn't.",
+    "If you can't explain the P&L, neither can they.",
+    "The market humbles everyone eventually.",
+    "That hedge looked great... yesterday.",
+    "Ops doesn't sleep, it just finds new breaks.",
+    "The ticket never lies, people do.",
+    "Every clean book has a messy history.",
+    "What could go wrong usually does... in settlement.",
+    "A 'sure thing' is just a delayed problem.",
+    "The desk is calm right before it isn't."
     
 ]
 
