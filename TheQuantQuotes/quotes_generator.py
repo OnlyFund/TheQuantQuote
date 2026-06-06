@@ -72,13 +72,11 @@ TRADING_QUOTES = [
 
     # FX Vol specific
     "FX vol: where central banks ruin your day",
-    "EURUSD vol: boring until it's not",
     "Cable vol: Brexit's eternal gift",
     "EM FX vol: because you hate stability",
-    "G10 vol: low and slow until it explodes",
     "Spot moves 5%, vol moves 50%, desk moves to new jobs",
     "FX vol smile: because markets aren't normal",
-    "Carry trade: free money until it's not",
+    "Carry trade: because we all love free money",
     "FX options: where 25 delta means something",
     "Butterfly spread: for when you're wrong about everything",
     "Vol surface: flat in theory, bumpy in practice",
