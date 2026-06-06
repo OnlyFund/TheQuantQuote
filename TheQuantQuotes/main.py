@@ -201,46 +201,41 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ============================================================================
-# ENGAGEMENT BUTTONS (Like & Share Dropdown)
+# ENGAGEMENT + ACTIONS (CLEAN LAYOUT)
 # ============================================================================
 
-col1, col2 = st.columns([1.5, 1,])
+col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
+
+    # NEW QUOTE BUTTON (TOP)
+    if st.button("🔄 NEW QUOTE", use_container_width=True):
+
+        track(
+            "new_quote_requested",
+            {"previous_quote": current_quote}
+        )
+
+        st.session_state.current_quote = (
+            st.session_state.generator.get_random_quote()
+        )
+
+        st.rerun()
+
+    st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
+
+    # LIKE BUTTON (DIRECTLY BELOW)
     if st.button("❤️ LIKE", use_container_width=True, key="like_btn"):
+
         track(
             "quote_liked",
-            {
-                "quote": current_quote,
-            }
+            {"quote": current_quote}
         )
 
         new_likes = add_like(current_quote)
 
         st.success(f"Quote liked! Total: {new_likes}")
         st.rerun()
-
-
-# ============================================================================
-# SHARE SECTION (SAFE WITH AUTO-REFRESH + NO DUPLICATE KEYS)
-# ============================================================================
-
-import hashlib
-
-# Track quote changes
-if "last_quote" not in st.session_state:
-    st.session_state.last_quote = current_quote
-
-# Reset share state when quote changes
-if st.session_state.last_quote != current_quote:
-    st.session_state.share_select = "-- Select Platform --"
-    st.session_state.last_share_option = None
-    st.session_state.last_quote = current_quote
-
-
-col1, col2,col4 = st.columns([1.5, 1, 1.5])
-
-
 # ============================================================================
 # NEW QUOTE BUTTON (CENTERED)
 # ============================================================================
