@@ -34,147 +34,79 @@ if "app_loaded" not in st.session_state:
 
 ENHANCED_CSS = BLOOMBERG_CSS + """
 <style>
+    .clock-container {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        padding: 1.5rem 2rem;
+        margin: 0 0 2rem 0;
+        border-left: 5px solid #FF6B00;
+        border-right: 5px solid #FF6B00;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
 
-/* ============================================================================
-   CLOCK CONTAINER
-============================================================================ */
+    .stColumn {
+        text-align: center;
+    }
 
-.clock-container {
-    background: linear-gradient(
-        135deg,
-        #0a0a0a 0%,
-        #1a1a1a 100%
-    );
+    /* Metric Value (Time) - Green */
+    div[data-testid="stMetricValue"] {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 2rem;
+        color: #00FF00 !important;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
 
-    padding: 1.5rem 2rem;
-    margin-bottom: 2rem;
-
-    border-left: 5px solid #FF6B00;
-    border-right: 5px solid #FF6B00;
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 4px 12px rgba(0,0,0,0.60);
-}
-
-/* ============================================================================
-   STREAMLIT COLUMNS
-============================================================================ */
-
-.stColumn {
-    text-align: center;
-}
-
-/* ============================================================================
-   CLOCK VALUES (GREEN)
-============================================================================ */
-
-[data-testid="stMetricValue"] {
-    color: #00FF00 !important;
-
-    font-family: "Roboto Mono", monospace !important;
-
-    font-size: 2rem !important;
-
-    font-weight: 700 !important;
-
-    letter-spacing: 2px !important;
-
-    text-shadow:
-        0 0 8px rgba(0,255,0,0.30);
-}
-
-/* ============================================================================
-   CITY LABELS (ORANGE)
-============================================================================ */
-
-[data-testid="stMetricLabel"] {
+    /* Metric Label (City Names) - Orange */
+    div[data-testid="stMetricLabel"] p {
     color: #FF6B00 !important;
-
-    font-family: "Inter", sans-serif !important;
-
-    font-size: 0.85rem !important;
-
-    font-weight: 700 !important;
-
-    text-transform: uppercase !important;
-
-    letter-spacing: 2px !important;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
 }
 
-/* Catch every possible nested element Streamlit uses */
+    /* Additional specificity for nested elements */
+    .clock-container div[data-testid="stMetricLabel"] {
+        color: #FF6B00 !important;
+    }
 
-[data-testid="stMetricLabel"] * {
-    color: #FF6B00 !important;
+    .clock-container div[data-testid="stMetricLabel"] > div {
+        color: #FF6B00 !important;
+    }
 
-    font-family: "Inter", sans-serif !important;
+    /* Target all text inside metric labels */
+    [data-testid="stMetricLabel"] * {
+        color: #FF6B00 !important;
+    }
 
-    text-transform: uppercase !important;
+    /* Force override for metric labels */
+    .clock-container div[data-testid="stMetricLabel"] > div {
+        color: #FF6B00 !important;
+    }
 
-    letter-spacing: 2px !important;
-}
+    .clock-container label {
+        color: #FF6B00 !important;
+    }
 
-[data-testid="stMetricLabel"] div {
-    color: #FF6B00 !important;
-}
+    /* Engagement stats display */
+    .engagement-stats {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 1rem;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 0.9rem;
+        color: #FFD700;
+    }
 
-[data-testid="stMetricLabel"] span {
-    color: #FF6B00 !important;
-}
-
-[data-testid="stMetricLabel"] p {
-    color: #FF6B00 !important;
-}
-
-[data-testid="stMetricLabel"] label {
-    color: #FF6B00 !important;
-}
-
-/* ============================================================================
-   OPTIONAL WHITE LABELS
-   Uncomment if you prefer white instead of orange
-============================================================================ */
-
-/*
-[data-testid="stMetricLabel"],
-[data-testid="stMetricLabel"] * {
-    color: #FFFFFF !important;
-}
-*/
-
-/* ============================================================================
-   ENGAGEMENT STATS
-============================================================================ */
-
-.engagement-stats {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 2rem;
-
-    margin-top: 1rem;
-
-    color: #FFD700;
-
-    font-family: "Roboto Mono", monospace;
-
-    font-size: 0.9rem;
-}
-
-.stat-item {
-    display: flex;
-
-    align-items: center;
-
-    gap: 0.5rem;
-}
-
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 </style>
-"""
-
-
 # ============================================================================
 # INITIALIZE GENERATOR (STATLESS VERSION)
 # ============================================================================
