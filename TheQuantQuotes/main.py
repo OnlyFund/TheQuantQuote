@@ -111,7 +111,7 @@ st.markdown(ENHANCED_CSS, unsafe_allow_html=True)
 # ============================================================================
 
 if 'generator' not in st.session_state:
-    st.session_state.generator = QuoteGenerator(history_size=30)
+    st.session_state.generator = QuoteGenerator
 
 if 'current_quote' not in st.session_state:
     st.session_state.current_quote = st.session_state.generator.get_random_quote()
