@@ -745,6 +745,28 @@ TRADING_QUOTES = [
     "Vol surface arbitrage: free money until the next headline",
     "Commodity smiles: frowns in disguise",
     "Black-Scholes never met a tanker blockade",
+
+    "Delta is fate pretending to be direction.",
+    "Gamma is hubris — the faster you move, the faster it punishes you.",
+    "Vega is prophecy: priced but never trusted.",
+    "Theta is Kronos eating your premium one day at a time.",
+    "A short vol book is Icarus with a carry stream.",
+    "The smile is Delphi — always ambiguous, always right in hindsight.",
+    "Hedging is Sisyphus work: correct, exhausting, never finished.",
+    "When vol explodes, it’s not chaos — it’s reversion to myth.",
+    "Markets don’t break; they reveal they were always tragic.",
+    "Gamma is Nemesis — punishment for imbalance.",
+    "Every strike is a different prophecy of the same doom.",
+    "Liquidity is the chorus that disappears before the tragedy ends.",
+    "You are never short vol; you are short catastrophe timing.",
+    "The model is Cassandra: accurate, ignored, vindicated too late.",
+    "Correlations in crisis are the Fates cutting loose individuality.",
+    "A vol crush is calm before the gods change their mind.",
+    "Risk is just narrative until path dependency turns it mythic.",
+    "The trader is Odysseus: surviving regimes, not forecasting them.",
+    "Smile steepening is the market whispering about disaster probability.",
+    "Every book is a tragedy; pnl just decides the ending date."
+    
 ]
 
 
