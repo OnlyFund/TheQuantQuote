@@ -109,8 +109,6 @@ TRADING_QUOTES = [
 
 
     # General derivatives wisdom
-    "Options: limited risk, unlimited regret",
-    "Derivatives: weapons of mass financial destruction",
     "The only Greek that matters is the P&L",
     "Hedge early, hedge often, still lose money",
     "Convexity: expensive insurance you hope to never use",
