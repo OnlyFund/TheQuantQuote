@@ -226,7 +226,7 @@ with col3:
     # Share dropdown menu
     share_option = st.selectbox(
         "🔗 SHARE TO:",
-        ["-- Select Platform --", "𝕏 Twitter", "💼 LinkedIn", "f Facebook", "📧 Email"],
+        ["-- Select Platform --", "𝕏 Twitter",  "f Facebook", "📧 Email"],
         key="share_select",
         label_visibility="collapsed"
     )
@@ -239,14 +239,12 @@ with col3:
 
         share_links = {
             "𝕏 Twitter": f"https://twitter.com/intent/tweet?text={encoded_text}&url={quote_url}",
-            "💼 LinkedIn": f"https://www.linkedin.com/sharing/share-offsite/?url={quote_url}",
             "f Facebook": f"https://www.facebook.com/sharer/sharer.php?u={quote_url}",
             "📧 Email": f"mailto:?subject={urllib.parse.quote('Check out this GLOOMBERG quote')}&body={urllib.parse.quote(share_text)}",
         }
 
         platform_key = {
             "𝕏 Twitter": "twitter",
-            "💼 LinkedIn": "linkedin",
             "f Facebook": "facebook",
             "📧 Email": "email",
         }
