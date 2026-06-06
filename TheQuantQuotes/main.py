@@ -8,6 +8,7 @@ from streamlit_autorefresh import st_autorefresh
 import arrow
 import urllib.parse
 from quotes_generator import QuoteGenerator,TRADING_QUOTES
+from export_quote import generate_quote_image
 from config import PAGE_CONFIG, BLOOMBERG_CSS
 from quote_engagement import (
     add_like,
