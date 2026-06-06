@@ -545,6 +545,7 @@ TRADING_QUOTES = [
     "Gamma hedge completed, disaster postponed",
     "Every gamma trade starts as a good idea",
     "Pod shop risk limits: precise, non-negotiable, changed last Tuesday",
+    "Shared services: everyone pays for the infrastructure, nobody knows what it costs",
     
     "Gamma is just leverage wearing glasses",
     "Short gamma, long explanations",
