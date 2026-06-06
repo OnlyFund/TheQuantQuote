@@ -143,7 +143,13 @@ st.markdown("""
 # WORLD CLOCK - SIDE BY SIDE
 # ============================================================================
 
-st.markdown('<div class="clock-container">', unsafe_allow_html=True)
+st.markdown("""
+<div class="clock-container">
+    <h4 style="text-align:center;color:#FF6B00;margin-bottom:1rem;">
+        GLOBAL MARKET HOURS
+    </h4>
+</div>
+""", unsafe_allow_html=True)
 
 now = arrow.now()
 
