@@ -57,17 +57,7 @@ div[data-testid="stMetricValue"] {
 div[data-testid="stMetricLabel"],
 div[data-testid="stMetricLabel"] div,
 div[data-testid="stMetricLabel"] span,
-div[data-testid="stMetricLabel"] p {
-    color: #FFD700 !important;  /* or #FFFFFF */
-    
-div[data-testid="stMetricLabel"] {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    color: #FF6B00 !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
+
 /* Metric Label (City Names) - Orange */
     div[data-testid="stMetricLabel"] p {
     color: #FF6B00 !important;
@@ -76,16 +66,6 @@ div[data-testid="stMetricLabel"] {
     letter-spacing: 2px;
     font-size: 0.8rem;
 }
-
-/* Target all text inside metric labels */
-    [data-testid="stMetricLabel"] * {
-        color: #FF6B00 !important;
-    }
-
-    /* Force override for metric labels */
-    .clock-container div[data-testid="stMetricLabel"] > div {
-        color: #FF6B00 !important;
-    }
 
     .clock-container label {
         color: #FF6B00 !important;
