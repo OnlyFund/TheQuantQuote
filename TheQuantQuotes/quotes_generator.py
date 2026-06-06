@@ -544,7 +544,8 @@ TRADING_QUOTES = [
     "Gamma exposure: choose violence",
     "Gamma hedge completed, disaster postponed",
     "Every gamma trade starts as a good idea",
-    "Gamma scalping: earning pennies, risking aneurysms",
+    "Pod shop risk limits: precise, non-negotiable, changed last Tuesday",
+    
     "Gamma is just leverage wearing glasses",
     "Short gamma, long explanations",
     "Vega always moves after you've hedged it",
