@@ -1,1 +1,45 @@
+from html2inage import HTml2Image
+import tempfile
 
+
+def generate_quote_image(quote, date):
+    hti = Html2Image()
+
+    html = f"""
+    <div style="
+        width: 800px;
+        padding: 40px;
+        background: linear-gradient(135deg,#0a0a0a,#1a1a1a);
+        color: white;
+        font-family: Inter;
+        border-left: 6px solid #FF6B00;
+        border-right: 6px solid #FF6B00;
+        border-radius: 12px;
+    ">
+        <div style="color:#FF6B00;font-size:18px;margin-bottom:20px;">
+            💬 GLOOMBERG QUOTE OF THE DAY
+        </div>
+
+        <div style="
+            font-size:28px;
+            color:#00FF00;
+            font-family:Roboto Mono;
+            line-height:1.4;
+        ">
+            {quote}
+        </div>
+
+        <div style="
+            margin-top:30px;
+            font-size:14px;
+            color:#888;
+        ">
+            {date} | Trading Desk Wisdom
+        </div>
+    </div>
+    """
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        hti.output_path = tmpdir
+        path = hti.screenshot(html_str=html, save_as="quote.png")
+        return path[0]
