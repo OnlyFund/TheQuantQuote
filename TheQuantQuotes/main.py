@@ -4,6 +4,7 @@ Compatible with Streamlit 1.57
 """
 
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
 import arrow
 import urllib.parse
 
@@ -18,7 +19,7 @@ from config import PAGE_CONFIG, BLOOMBERG_CSS
 # ============================================================================
 
 st.set_page_config(**PAGE_CONFIG)
-
+st_autorefresh(interval=1000, key="clock_refresh")
 if "app_loaded" not in st.session_state:
     st.session_state.app_loaded = True
     try:
