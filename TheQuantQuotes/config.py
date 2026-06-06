@@ -5,7 +5,7 @@ Configuration and styling for Bloomberg-style trading quotes app.
 # Page configuration
 PAGE_CONFIG = {
     "page_title": "GLOOMBERG | Quote of the Day",
-    "page_icon": "🖥️",
+    "page_icon": "🖥️🖥️",
     "layout": "wide",
     "initial_sidebar_state": "collapsed"
 }
