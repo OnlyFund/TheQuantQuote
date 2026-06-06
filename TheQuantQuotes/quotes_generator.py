@@ -94,7 +94,6 @@ TRADING_QUOTES = [
     "Unwind that position? But it's my favorite loser",
 
     # Volatility quotes
-    "Volatility is the only free lunch in finance",
     "Low vol kills, high vol thrills",
     "Implied vol is just expensive hope",
     "Realized vol: where predictions go to die",
