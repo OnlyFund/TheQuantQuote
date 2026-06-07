@@ -558,6 +558,35 @@ TRADING_QUOTES = [
     "Vol of vol rises when certainty is still giving speeches",
     "The surface was already grieving when the model declared fair value",
     "The far strike prices a world the near strike still refuses to live in",
+
+    # The baseline is different
+    "EM: your tail risk is our Tuesday",
+    "You call it armageddon. We call it just another day in the office.",
+    "G10 calls it a regime change. EM calls it the third one this year.",
+    "Developed markets discovered tail risk in 2008. We never lost it.",
+    "EM vol surface has no memory because it never had the luxury of forgetting",
+    "G10 traders hedge against crises. EM traders hedge between them.",
+    "The EM smile was steep before 'geopolitical risk' was a slide deck category",
+    "EM skew: not fear, just institutional memory",
+
+    # Carry & the false calm
+    "EM carry: three years of income, three days of losses",
+    "The carry looked free until the central bank changed its mind at midnight",
+    "EM carry unwind: the most predictable surprise in finance",
+    "Everyone loves EM in the good times. The good times are never the point.",
+    "The yield was real. The liquidity was a suggestion.",
+
+    # Liquidity & execution
+    "EM liquidity: there until you need it, gone before you ask",
+    "Bid-offer in EM: a number and a prayer",
+    "The axe was there yesterday. Today it's a different country.",
+    "EM execution: the price you get is the price that was available",
+    "Spread quoted. Spread doubled. Trade done at neither.",
+
+    # Buy-side EM
+    "EM PM: right on the macro, wrong on the timing, right on the losses",
+    "The thesis was correct. The currency had other plans.",
+    "In EM, the fundamentals are the story. The technicals are the actual trade.",
     
 ]
 
