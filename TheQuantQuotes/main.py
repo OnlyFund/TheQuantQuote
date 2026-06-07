@@ -48,7 +48,7 @@ ENHANCED_CSS = BLOOMBERG_CSS + """
     div[data-testid="stMetricValue"] {
         font-family: 'Roboto Mono', monospace;
         font-size: 2rem;
-        color: #00FF00 !important;
+        color: #ffffff !important;
         font-weight: 700;
         letter-spacing: 2px;
         text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
