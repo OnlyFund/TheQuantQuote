@@ -542,6 +542,23 @@ TRADING_QUOTES = [
     "I trust the model. I fear the market.",
     "The model says maybe",
     "Risk approved it. That's concerning.",
+
+    "The wings have already forgotten what the ATM hasn't learned yet",
+    "The skew already knows what spot hasn't moved yet",
+    "Vol surface remembers every crisis the ATM has since forgiven",
+    "The put wing prices the world the call wing refuses to imagine",
+    "The 10-delta strike is a memory of the last time everyone was wrong",
+    "Implied vol peaks when realized vol is just getting started",
+    "The smile bends toward the truth before the model accepts it",
+    "The forward vol is mourning an event the spot market hasn't scheduled",
+    "The wings carry the weight of every tail the distribution denied",
+    "Skew steepens in the silence before anyone admits what they're hedging",
+    "The term structure inverted before the economists had a word for it",
+    "The 25-delta put remembers what the last calm regime chose to forget",
+    "Vol of vol rises when certainty is still giving speeches",
+    "The surface was already grieving when the model declared fair value",
+    "The far strike prices a world the near strike still refuses to live in",
+    
 ]
 
 
