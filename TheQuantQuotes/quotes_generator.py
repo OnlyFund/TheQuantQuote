@@ -587,6 +587,27 @@ TRADING_QUOTES = [
     "EM PM: right on the macro, wrong on the timing, right on the losses",
     "The thesis was correct. The currency had other plans.",
     "In EM, the fundamentals are the story. The technicals are the actual trade.",
+
+    "FX vol be like: I was calm for three months, did you miss me",
+    "Gamma be like: you hedged this morning, cute",
+    "EM carry be like: the yield is real, the exit is not",
+    "Vanna be like: you fixed your delta and your vega, you're welcome",
+    "The vol surface be like: I moved, figure out why",
+    "Theta be like: weekends are on me",
+    "Skew be like: I've been pricing this disaster since January",
+    "EM FX be like: the central bank has entered the chat",
+    "0DTE gamma be like: it's 3:45pm, are you sure about that position",
+    "Realized vol be like: remember all those forecasts",
+    "The barrier be like: you knew where I was",
+    "OPEC be like: we have decided to surprise everyone equally",
+    "Vol of vol be like: you thought regular vol was the problem",
+    "The forward curve be like: I told you, you just didn't look",
+    "Cross-gamma be like: both legs moved, neither hedge worked, good morning",
+    "EM liquidity be like: I was here yesterday",
+    "The smile be like: I'm not flat, I never said I was flat",
+    "Drawdown be like: I started small, you had options",
+    "Month-end vol be like: everyone marks, nobody agrees, P&L is a feeling",
+    "The model be like: correct in expectation, useless in practice",
     
 ]
 
