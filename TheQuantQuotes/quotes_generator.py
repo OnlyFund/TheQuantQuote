@@ -39,7 +39,9 @@ TRADING_QUOTES = [
     "Gamma neutral on paper, anything but in practice",
     "The gamma spike always finds the unhedged book",
     "Every vol seller discovers their gamma limit eventually",
-
+    "The gamma report was clean. The 4pm print wasn't.",
+    "Gamma scalping: buying high, selling low, calling it alpha",
+ 
     # Basis
     "When basis explodes, pods implode",
     "Basis risk: physical reality's revenge on financial models",
@@ -61,7 +63,7 @@ TRADING_QUOTES = [
     "Basis risk: because flat price wasn't painful enough",
     "Basis blowup: when the model assumed frictionless transport",
     "Basis is the market's way of reminding you that geography exists",
-
+ 
     # Vega
     "Vega hurts when you least expect it",
     "Long vega, short nerves",
@@ -76,38 +78,37 @@ TRADING_QUOTES = [
     "Vega hedged at open, vol surface repriced by lunch",
     "Long vol: eventually correct, immediately unemployed",
     "Short vol: collecting premiums from future you",
-
+    "Vega flat on the matrix. Vega not flat on the actual surface.",
+    "The vol surface doesn't care about your carry thesis",
+ 
     # Theta
     "Theta decay: the only certainty in options",
-    "Time is money, theta is proof",
     "Theta never sleeps, neither do option sellers",
     "Theta: slow violence",
     "Theta positive, life negative",
     "Weekend theta: the gift that keeps on giving",
     "Theta never misses payroll",
-    "Theta harvest season",
-    "Time decay: undefeated since forever",
-    "Theta is the internship of P&L",
     "Theta: charging rent on borrowed hope",
     "Every option expires worthless eventually",
     "Theta positive, emotionally negative",
-
+    "Theta paid for three months. Gamma collected in three days.",
+    "The theta was real. The gamma event was realer.",
+ 
     # Delta
     "Delta neutral, emotionally unstable",
     "Delta hedging: the art of controlled panic",
-    "Delta one, problems none",
     "Delta hedging: because picking a direction is hard",
     "Your delta is showing",
     "Delta was never the problem",
     "Delta hedge first, ask questions later",
-    "Delta: the gateway Greek",
     "Flat delta, not flat emotions",
     "The market chose a direction for me",
     "Delta is temporary, slippage is forever",
     "Delta hedging: solving today's problem tomorrow",
     "Spot moved. There goes the hedge.",
     "Your directional view is showing",
-
+    "Delta hedged to the model. Unhedged to what actually moved.",
+ 
     # FX Vol
     "FX vol: where central banks ruin your day",
     "Cable vol: Brexit's eternal gift",
@@ -126,8 +127,9 @@ TRADING_QUOTES = [
     "G10 vol: boring until it's not, and then it's really not",
     "Central bank intervention: the event vol you can't delta hedge",
     "FX forward points: carry that never feels free",
-
-    # Options desk
+    "Risk reversal carry: collecting dimes in front of a steamroller that speaks central bank",
+ 
+    # Options desk / flow
     "Marked my book, marked my soul",
     "P&L explain: creative writing for traders",
     "Model says buy, gut says sell, compliance says no",
@@ -142,8 +144,8 @@ TRADING_QUOTES = [
     "If you can't explain the P&L, neither can they",
     "The ticket never lies, people do",
     "Every clean book has a messy history",
-    "Middle office knows where the bodies are buried.",
-    "That 'small position' has a funny way of growing.",
+    "Middle office knows where the bodies are buried",
+    "That 'small position' has a funny way of growing",
     "Risk says no. Trader says 'just this once'.",
     "What could go wrong usually does... in settlement.",
     "Ops doesn't sleep, it just finds new breaks.",
@@ -156,18 +158,29 @@ TRADING_QUOTES = [
     "The risk limit exists until a good client calls",
     "Structured product closed. Residual risk opened.",
     "Unwind request at 3:55pm on an illiquid Friday",
-
+    "The axe is never where the client needs it",
+    "Axes are honest. Salespeople aren't.",
+    "Flow that looks like flow isn't always flow",
+    "The client hedged the wrong tenor because we showed them the liquid one",
+    "Every axe has a story. Most of them end badly for the other side.",
+    "Real flow moves the surface. Everything else is noise.",
+    "The best axe is the one nobody knows you have",
+    "Informed flow: the thing you suspect but can't prove until it's too late",
+    "Client order in. Desk hedged. Surface moved. Coincidence.",
+    "The axe gets lifted exactly when you needed it most",
+    "The mid was indicative. The fill was not.",
+    "Streaming price pulled the moment size was disclosed",
+    "The market impact started before the order was sent",
+    "The algo filled it. The trader explained it.",
+    "Slippage: the spread between the backtest and reality",
+    "The liquidity was there at 9am. By 9:01 it had seen the order.",
+    "Best execution means different things to the client and the desk",
+ 
     # Volatility
-    "Low vol kills, high vol thrills",
     "Implied vol is just expensive hope",
     "Realized vol: where predictions go to die",
-    "Volatility: can't live with it, can't trade without it",
     "Vol of vol: because one layer of complexity wasn't enough",
-    "Sticky strike, sticky delta, sticky P&L",
-    "Vol clustering: bad news travels in packs",
     "Vol risk premium: gap between fear and reality",
-    "Vol compression: trader depression",
-    "Vol expansion: nature healing",
     "Vol mean reversion: eventually, maybe, hopefully",
     "Realized-implied spread: the trade that never works",
     "Long vol: right eventually, broke immediately",
@@ -177,7 +190,18 @@ TRADING_QUOTES = [
     "Short vol in a low-vol regime: picking up nickels, not dimes",
     "Vol carry works until the event everyone forgot about",
     "Selling vol: great strategy, terrible timing, every time",
-
+    "Vol carry: you're not collecting premium, you're selling the right to be bailed out",
+    "Long vol in a carry regime is just paying tuition",
+    "Selling straddles for yield: the strategy that works until the portfolio doesn't",
+    "The vol risk premium is real. So is the drawdown when it unwinds.",
+    "Every vol regime looks obvious in hindsight and invisible in real time",
+    "The variance swap knew it was a crisis before the equity desk did",
+    "Short vol is a strategy. Short vol forever is a character flaw.",
+    "Vol targeting: systematically buying high and selling low with a mandate",
+    "The correlation break always happens inside the vol strategy that assumed it wouldn't",
+    "Selling puts for income: a bond strategy with unlimited downside and limited self-awareness",
+    "Every structured vol strategy has a hidden short gamma somewhere",
+ 
     # Skew / Risk Reversal
     "Skew happens",
     "Skew trade: right direction, wrong timing, no P&L",
@@ -202,13 +226,10 @@ TRADING_QUOTES = [
     "Skew steepens at the worst moment to be short it",
     "25d risk reversal: the desk's daily mood ring",
     "The 10-delta put knows things the ATM doesn't",
-
+ 
     # Greeks general
     "The only Greek that matters is the P&L",
-    "Hedge early, hedge often, still lose money",
-    "Convexity: expensive insurance you hope to never use",
     "Correlation goes to one when you need it least",
-    "Greeks are theoretical, losses are real",
     "One more Greek should fix this",
     "There is always another Greek",
     "The Greeks send their regards",
@@ -218,19 +239,17 @@ TRADING_QUOTES = [
     "Cross-greeks: collaborative suffering",
     "Higher-order Greeks, lower-order judgment",
     "Know your Greeks, lose money anyway",
-    "Greeks: named by mathematicians, feared by traders",
     "The Greeks always had a thing with tragedies",
     "First-order Greeks: what you hedge. Second-order Greeks: what kills you",
     "Greeks report: 47 pages of numbers, zero insight",
-    "Greek letters: because English wasn't confusing enough",
     "Greeks neutral: theoretically possible, practically impossible",
     "Greeks dashboard: red everywhere, explanations nowhere",
     "Managing Greeks: like juggling chainsaws, blindfolded",
     "Greeks in crisis: all positive, portfolio still negative",
-    "The Greek alphabet: 24 letters, infinite ways to lose money",
-    "Every position is a hedge against happiness",
-    "The Greeks: ancient wisdom, modern pain",
-
+    "Greeks neutralised. P&L not consulted.",
+    "The cross-gamma wasn't in the risk report because nobody thought to ask",
+    "The rho was irrelevant until rates moved 200bps in six weeks",
+ 
     # Vanna / Volga / Charm
     "Vanna: when your delta hedge needs a hedge",
     "Vanna risk: gamma's evil twin",
@@ -254,7 +273,10 @@ TRADING_QUOTES = [
     "Vanna is just the market's way of saying your hedge was wrong in two dimensions",
     "Volga hedging: opened the textbook, closed the position",
     "Cross-vanna: two underlyings, four explanations, one loss",
-
+    "The vanna exposure was in the footnotes. The loss was on the blotter.",
+    "Charm at month-end: the Greek that turns a flat book into an active one",
+    "Volga is just the market charging you for being wrong about vol of vol",
+ 
     # Barrier options
     "Barrier options: because vanilla is too boring",
     "Knock-in, knock-out, knock yourself out",
@@ -268,7 +290,8 @@ TRADING_QUOTES = [
     "Barrier gamma spike: the path-dependent version of stepping on a Lego",
     "Rebate: consolation prize nobody wanted",
     "Reverse knock-out: because hedging it is worse than holding it",
-
+    "The knock-out was 3% away. It felt like it wasn't.",
+ 
     # Exotics & Structured Products
     "Exotic options: where closed-form solutions go to die",
     "Structured products: complexity for fees, simplicity for losses",
@@ -308,7 +331,13 @@ TRADING_QUOTES = [
     "Knock-out forward: free leverage until the board finds out",
     "Range accrual: collecting daily coupons into a black hole",
     "Every bespoke structure is just a barrier option in a suit",
-
+    "The term sheet was 60 pages. The risk was on page 61.",
+    "Autocall pricing: giving away vol to sell a yield that sounds like a bond",
+    "The worst-of basket correlation was set to 0.7. It realized at 0.95.",
+    "Structured product margin: front-loaded for the desk, back-loaded for the client",
+    "Every autocall sold is a variance swap bought by someone else",
+    "TARF: the product where the client wins small and loses big, elegantly structured",
+ 
     # Vol surface & models
     "SABR model: wrong but industry standard",
     "Heston model: stochastic vol, deterministic losses",
@@ -321,9 +350,7 @@ TRADING_QUOTES = [
     "Arbitrage-free surface: theoretically required, practically impossible",
     "No-arbitrage conditions: violated daily",
     "Black-Scholes: Nobel Prize for being elegantly wrong",
-    "Normal distribution: a beautiful lie",
     "Fat tails: where your risk models go to die",
-    "The model is perfect, reality is broken",
     "Vol surface: the map is not the territory",
     "Vol models: all wrong, some useful",
     "Calibrating the vol surface: fitting noise to noise",
@@ -338,8 +365,8 @@ TRADING_QUOTES = [
     "The local vol surface is smooth. The hedges are not.",
     "Heston: two more parameters than Black-Scholes, twice the miscalibration",
     "Model risk: the risk your model is wrong, and it is",
-
-    # Quant humor
+ 
+    # Quant
     "Correlation is not causation, but it pays the bills",
     "Monte Carlo: because closed-form is too easy",
     "Machine learning: fitting noise faster",
@@ -366,22 +393,41 @@ TRADING_QUOTES = [
     "Factor loading: attributing everything to something",
     "Every alpha decays. The question is whether you're still in it.",
     "PCA explained 87% of the variance. The 13% explained the loss.",
-
+    "The strategy worked in the backtest because it front-ran itself",
+ 
+    # Rates / Swaptions
+    "Swaptions: options on swaps, regrets on both",
+    "Swaption vol: where rates uncertainty meets optionality and both lose",
+    "The rates vol surface repriced overnight. The delta hedge was daily.",
+    "Receivers vs payers skew: the market's opinion on where the central bank panics",
+    "Swaption gamma: interest rate risk that arrives without warning",
+    "Bermudan callable: the client's right to ruin your hedge at the worst moment",
+    "CMS spread options: two rates, one surface, infinite ways to miscalibrate",
+    "The vol surface said rates were rangebound. The FOMC didn't get the memo.",
+    "Swap spread vol: basis risk with a duration overlay",
+ 
+    # Correlation / Dispersion
+    "Dispersion trades: long single-name vol, short index vol, short sanity",
+    "Dispersion trade: short the index knowing the single names will humiliate you individually",
+    "Correlation is the trade that looks diversified until it isn't",
+    "Long dispersion: right on the structure, wrong on the timing, always",
+    "The index moved less than the components. Correlation trading 101.",
+    "Correlation swaps: pricing a relationship the market will definitely violate",
+    "Every dispersion desk has a story that starts with 'implied correlation was too high'",
+    "Single-stock vol rich, index vol cheap, correlation trade obvious, P&L not",
+ 
     # Desk culture
-    "Traders: right 51% of the time, confident 100%",
-    "Sales: promising what traders can't deliver since forever",
-    "Quants: solving problems traders didn't know they had",
-    "Risk: saying no in the most complicated way possible",
-    "Compliance: the fun police",
-    "Axe gone. Spread blown. Sales apologises later.",
+    "P&L is the only performance review that matters",
+    "Every hero trade starts with 'this one's different'",
+    "The spreadsheet works until it doesn't",
     "The structurer is the only person who understands the trade. That's the problem.",
     "Quant research: 40 pages of math, one trading signal that doesn't work",
     "Sales credit: the original attribution problem",
     "Risk manager approved it. That's not reassuring.",
-    "P&L is the only performance review that matters",
-    "Every hero trade starts with 'this one's different'",
-    "The spreadsheet works until it doesn't",
-
+    "Quants: solving problems traders didn't know they had",
+    "Risk: saying no in the most complicated way possible",
+    "Risk management ruins great stories",
+ 
     # P&L
     "P&L: the universal language",
     "Green days build confidence, red days build character",
@@ -394,36 +440,26 @@ TRADING_QUOTES = [
     "Green P&L: skill. Red P&L: bad luck",
     "Profit is temporary, screenshots are eternal",
     "Marked to market, judged by management",
-    "The spreadsheet says yes",
     "Attribution complete, mystery remains",
-    "Today's alpha is tomorrow's beta",
     "The bonus is path dependent",
     "Performance review by mark-to-market",
     "The market audited my assumptions",
     "P&L is just a story until it settles",
-    "The trade worked until money was involved",
     "The best trade was the one you didn't do",
     "Every drawdown starts small",
     "Conviction peaks at the top",
     "The market heard your stop",
     "FOMO is not a strategy",
     "Hope is not executable",
-    "Risk management ruins great stories",
-    "The market rewards humility eventually",
-
+ 
     # Hedge Fund / Multistrat / Pod shops
     "Multistrat: because losing money in multiple ways is more efficient",
     "Risk parity: equal risk of failure across all strategies",
     "Factor investing: yesterday's anomaly, today's crowded trade",
     "Stat arb: finding inefficiencies that don't exist",
-    "Pairs trading: convergence eventually, just not before bankruptcy",
-    "Mean reversion: works great until prices revert to zero",
-    "Momentum: buying strength, selling weakness, wrong both ways",
     "Macro hedge fund: right thesis, wrong timing, right losses",
     "Long/short equity: long pain, short gains",
     "Hedge fund: taking 2 and 20 to underperform SPY",
-    "Leverage: amplifying skill and stupidity in equal measure",
-    "Drawdown: the only guaranteed return in investing",
     "Crisis alpha: alpha that only works during crises",
     "Crowded trade: when everyone's right until everyone's wrong",
     "Redemption notice: the market's way of saying 'timing'",
@@ -434,9 +470,7 @@ TRADING_QUOTES = [
     "Tail hedging: expensive insurance against the inevitable",
     "Quantitative strategies: backtesting on training data, blowing up on real data",
     "Portfolio optimization: maximizing correlations, minimizing returns",
-    "Merger arb: arbitraging away your existence",
-    "Rebalancing: selling winners, buying losers, systematically wrong",
-    "Patience is a position",
+    "Discretionary trading: conviction until conviction is wrong",
     "Pod P&L is socialized, pod blame is not",
     "Stop-loss hit. PM on the line. Both at the same time.",
     "Multistrat: diversified risk, concentrated accountability",
@@ -447,11 +481,21 @@ TRADING_QUOTES = [
     "Capital allocation day: the best and worst day of the year",
     "The book was handed back cleaner than it came in. Nobody believed it.",
     "Risk decomp meeting: 45 minutes of Greeks, 0 minutes of insight",
-    "Fundamental analysis: right direction, wrong decade",
-    "Technical analysis: pretty charts, ugly P&L",
-    "Discretionary trading: conviction until conviction is wrong",
-    "Sector rotation: yesterday's winners, today's bag holders",
-
+    "Multistrat PMs don't blow up. Their capital just gets reallocated.",
+    "The pod had edge. The crowding didn't care.",
+    "Pod sizing: risk limits set by someone who's never held the position",
+    "Every alpha stream is uncorrelated until redemption season",
+    "The book looked flat to risk. It wasn't flat to the market.",
+    "Gross exposure cut. Net exposure expressed itself anyway.",
+    "The stop-loss was the right call. The PM made it three weeks late.",
+    "Multistrat: where strategies come to get correlated",
+    "The allocation committee liked the Sharpe. The drawdown found the skew.",
+    "Every pod is market neutral until the market moves",
+    "Portfolio construction meeting: where good trades go to get diluted",
+    "Risk decomp showed no concentration. The unwind disagreed.",
+    "The PM left. The positions stayed. The risk didn't know the difference.",
+    "Capacity constrained at $200m. Running $800m. Vintage 2024.",
+ 
     # Macro / Event risk
     "Risk-off: when correlations go to one and liquidity goes to zero",
     "Event gamma: maximum risk, minimum reward",
@@ -465,7 +509,7 @@ TRADING_QUOTES = [
     "Fed day vol: bought expensive, sold cheaper",
     "Every macro thesis is correct at the annual horizon, useless at the daily",
     "The rate decision was in line. The statement wasn't. The vol was.",
-
+ 
     # Oil vol
     "Long oil vol, short world peace",
     "WTI: the asset class with commitment issues",
@@ -509,28 +553,21 @@ TRADING_QUOTES = [
     "The cure for high oil prices is high oil prices. The cure for low oil prices is unemployment",
     "Oil vol carry: collecting premium from future headlines",
     "Realized vol is what happened. Oil vol is what could happen",
-
+ 
     # Equity vol / SPX / 0DTE
     "Gold gamma: shiny metal, sharp losses",
     "Equity vol surface: skewed, kinked, and expensive",
     "SPX gamma: what you're short at the worst time",
     "0DTE options: because weekly expiry wasn't degenerate enough",
     "SPX put skew: permanently expensive, occasionally worth it",
-    "Swaptions: options on swaps, regrets on both",
     "0DTE gamma: the retail product that repriced the vol surface",
     "SPX 0DTE: the casino asked for better odds",
     "Index skew: the crowd's collective memory of every tail event",
     "Single-stock vol: illiquid, mismarked, and somehow cheaper",
     "Vol of vol: the real underlying of every structured product",
-
-    # Market wisdom
-    "Markets can remain irrational longer than you can remain solvent",
-    "The market is always right, except when it's wrong",
+ 
+    # Market wisdom / poetic
     "Liquidity is abundant until you need it",
-    "Flash crash: when algorithms have a bad day",
-    "Market maker: professional risk taker, amateur psychologist",
-    "Liquidity? Don't know her",
-    "Bid-ask spread: the market's way of saying 'no'",
     "You are never short vol; you are short catastrophe timing.",
     "Risk is just narrative until path dependency turns it mythic.",
     "The trader is Odysseus: surviving regimes, not forecasting them.",
@@ -540,9 +577,9 @@ TRADING_QUOTES = [
     "Markets don't break; they reveal they were always tragic.",
     "Correlations in crisis are the Fates cutting loose individuality.",
     "I trust the model. I fear the market.",
-    "The model says maybe",
     "Risk approved it. That's concerning.",
-
+ 
+    # Wings / ATM / surface poetry
     "The wings have already forgotten what the ATM hasn't learned yet",
     "The skew already knows what spot hasn't moved yet",
     "Vol surface remembers every crisis the ATM has since forgiven",
@@ -558,8 +595,20 @@ TRADING_QUOTES = [
     "Vol of vol rises when certainty is still giving speeches",
     "The surface was already grieving when the model declared fair value",
     "The far strike prices a world the near strike still refuses to live in",
-
-    # The baseline is different
+ 
+    # Desk poetic
+    "The hedge was perfect. The world wasn't.",
+    "Skew doesn't lie. Traders do.",
+    "Every vol surface is an argument about the future nobody wins.",
+    "The smile was there before you were.",
+    "Gamma found the position before risk did.",
+    "The book was flat. The market disagreed personally.",
+    "Vol sold off. Someone knew.",
+    "The barrier held until it had an audience.",
+    "You don't lose to the market. You lose to the version of yourself that put the trade on.",
+    "The surface moved. The model explained it afterwards.",
+ 
+    # EM desk
     "EM: your tail risk is our Tuesday",
     "You call it armageddon. We call it just another day in the office.",
     "G10 calls it a regime change. EM calls it the third one this year.",
@@ -568,49 +617,36 @@ TRADING_QUOTES = [
     "G10 traders hedge against crises. EM traders hedge between them.",
     "The EM smile was steep before 'geopolitical risk' was a slide deck category",
     "EM skew: not fear, just institutional memory",
-
-    # Carry & the false calm
     "EM carry: three years of income, three days of losses",
     "The carry looked free until the central bank changed its mind at midnight",
     "EM carry unwind: the most predictable surprise in finance",
     "Everyone loves EM in the good times. The good times are never the point.",
     "The yield was real. The liquidity was a suggestion.",
-
-    # Liquidity & execution
     "EM liquidity: there until you need it, gone before you ask",
     "Bid-offer in EM: a number and a prayer",
     "The axe was there yesterday. Today it's a different country.",
     "EM execution: the price you get is the price that was available",
     "Spread quoted. Spread doubled. Trade done at neither.",
-
-    # Buy-side EM
     "EM PM: right on the macro, wrong on the timing, right on the losses",
     "The thesis was correct. The currency had other plans.",
     "In EM, the fundamentals are the story. The technicals are the actual trade.",
-
+ 
+    # Be like
     "FX vol be like: I was calm for three months, did you miss me",
     "Gamma be like: you hedged this morning, cute",
     "EM carry be like: the yield is real, the exit is not",
     "Vanna be like: you fixed your delta and your vega, you're welcome",
-    "The vol surface be like: I moved, figure out why",
     "Theta be like: weekends are on me",
     "Skew be like: I've been pricing this disaster since January",
     "EM FX be like: the central bank has entered the chat",
     "0DTE gamma be like: it's 3:45pm, are you sure about that position",
-    "Realized vol be like: remember all those forecasts",
     "The barrier be like: you knew where I was",
     "OPEC be like: we have decided to surprise everyone equally",
-    "Vol of vol be like: you thought regular vol was the problem",
-    "The forward curve be like: I told you, you just didn't look",
     "Cross-gamma be like: both legs moved, neither hedge worked, good morning",
     "EM liquidity be like: I was here yesterday",
-    "The smile be like: I'm not flat, I never said I was flat",
     "Drawdown be like: I started small, you had options",
     "Month-end vol be like: everyone marks, nobody agrees, P&L is a feeling",
-    "The model be like: correct in expectation, useless in practice",
-    
 ]
-
 
 
 class QuoteGenerator:
