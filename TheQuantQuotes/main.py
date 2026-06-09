@@ -135,7 +135,7 @@ st.markdown("""
 st.markdown("""
 <div class="clock-container">
     <h4 style="text-align:center;color:#FF6B00;margin-bottom:1rem;">
-        GLOBAL MARKET CLOCK
+        GLOBAL MARKETS CLOCK
     </h4>
 </div>
 """, unsafe_allow_html=True)
